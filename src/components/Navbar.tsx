@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { NavLink } from "./NavLink";
 
 const links = [
-    { label: "The Problem", href: "#problem" },
-    { label: "What is Rabies?", href: "#what-is-rabies" },
-    { label: "First Aid", href: "#first-aid" },
-    { label: "Prevention", href: "#prevention" },
-    { label: "Get Help", href: "#get-help" },
+    { label: "Home", href: "/" },
+    { label: "The Problem", href: "/problem" },
+    { label: "What is Rabies?", href: "/what-is-rabies" },
+    { label: "First Aid", href: "/first-aid" },
+    { label: "WikiHow", href: "/wikihow" }, // Added right here
+    { label: "Prevention", href: "/prevention" },
+    { label: "Get Help", href: "/get-help" },
 ];
 
 const Navbar = () => {
@@ -16,7 +19,7 @@ const Navbar = () => {
     return (
         <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
             <div className="container flex items-center justify-between h-16">
-                <a href="#" className="flex items-center gap-2">
+                <NavLink to="/" className="flex items-center gap-2">
                     <img
                         src={logo}
                         alt="Ra-Byes! logo"
@@ -25,18 +28,23 @@ const Navbar = () => {
                     <span className="font-heading font-bold text-xl text-primary">
                         Ra-Byes!
                     </span>
-                </a>
+                </NavLink>
+
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-6">
                     {links.map((l) => (
-                        <a
+                        <NavLink
                             key={l.href}
-                            href={l.href}
-                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                            to={l.href}
+                            className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+                            activeClassName="text-primary"
                         >
                             {l.label}
-                        </a>
+                        </NavLink>
                     ))}
                 </div>
+
+                {/* Mobile Menu Toggle */}
                 <button
                     className="md:hidden text-foreground"
                     onClick={() => setOpen(!open)}
@@ -44,17 +52,20 @@ const Navbar = () => {
                     {open ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
+
+            {/* Mobile Navigation */}
             {open && (
                 <div className="md:hidden border-t border-border bg-background pb-4">
                     {links.map((l) => (
-                        <a
+                        <NavLink
                             key={l.href}
-                            href={l.href}
+                            to={l.href}
                             onClick={() => setOpen(false)}
-                            className="block px-6 py-3 text-sm font-medium text-muted-foreground hover:text-primary"
+                            className="block px-6 py-3 text-sm font-medium hover:text-primary text-muted-foreground"
+                            activeClassName="text-primary bg-primary/5"
                         >
                             {l.label}
-                        </a>
+                        </NavLink>
                     ))}
                 </div>
             )}
