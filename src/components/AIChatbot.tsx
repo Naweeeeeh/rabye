@@ -22,7 +22,6 @@ const AIChatBot = () => {
         const text = query.toLowerCase();
 
         if (text.includes("nearest") || text.includes("location") || text.includes("where") || text.includes("map") || text.includes("clinic") || text.includes("abc")) {
-
             if (location.pathname === "/get-help") {
                 return "You are already on the map page! Just click the 'Use My Location' button above, and the map will calculate the fastest route to the nearest facility for you.";
             } else {
@@ -62,31 +61,35 @@ const AIChatBot = () => {
     };
 
     return (
-        <div className="fixed bottom-24 right-6 z-[100] flex flex-col items-end">
+        <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
             {isOpen && (
-                <div className="mb-4 w-[350px] h-[550px] bg-white border border-[#8DA750]/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+                <div className="mb-4 w-[350px] sm:w-[380px] h-[550px] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
 
-                    <div className="bg-[#2D5128] p-4 text-white flex items-center justify-between shadow-md">
-                        <div className="flex items-center gap-2">
-                            <Bot size={22} className="animate-pulse text-[#E4EB9C]" />
+                    {/* Chat Header - Slate for Authority */}
+                    <div className="bg-slate-900 p-5 text-white flex items-center justify-between shadow-md z-10">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-green-900/50 border border-green-700 flex items-center justify-center">
+                                <Bot size={22} className="text-green-400" />
+                            </div>
                             <div>
-                                <p className="font-heading font-bold text-sm leading-none">Ra-Byes! Assistant</p>
-                                <p className="text-[10px] text-[#E4EB9C]/80 mt-1">Health Navigator</p>
+                                <p className="font-heading font-black text-base leading-none tracking-wide">Ra-Byes! AI</p>
+                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Health Navigator</p>
                             </div>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="hover:bg-white/10 rounded-full p-1 transition-colors">
+                        <button onClick={() => setIsOpen(false)} className="hover:bg-slate-800 rounded-full p-2 transition-colors text-slate-400 hover:text-white">
                             <X size={20} />
                         </button>
                     </div>
 
-                    <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-4 bg-[#E4EB9C]/10">
+                    {/* Chat Messages Area */}
+                    <div ref={scrollRef} className="flex-1 p-5 overflow-y-auto space-y-5 bg-slate-50">
                         {messages.map((m, i) => (
                             <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                                 <div className={cn(
-                                    "max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm",
+                                    "max-w-[85%] p-4 text-sm leading-relaxed shadow-sm",
                                     m.role === "user"
-                                        ? "bg-[#2D5128] text-white rounded-tr-none"
-                                        : "bg-white text-[#142C14] rounded-tl-none border border-[#8DA750]/30"
+                                        ? "bg-green-600 text-white rounded-2xl rounded-tr-sm"
+                                        : "bg-white text-slate-700 rounded-2xl rounded-tl-sm border border-slate-100"
                                 )}>
                                     {m.content}
                                 </div>
@@ -94,38 +97,54 @@ const AIChatBot = () => {
                         ))}
                     </div>
 
-                    <div className="px-4 py-2 border-t border-[#8DA750]/30 flex gap-2 overflow-x-auto no-scrollbar bg-white">
-                        <button onClick={() => handleSend("Where is the nearest ABC?")} className="whitespace-nowrap bg-[#E4EB9C]/30 hover:bg-[#E4EB9C]/60 text-[#2D5128] text-[11px] font-bold px-3 py-1.5 rounded-full border border-[#8DA750]/40 transition-colors flex items-center gap-1">
-                            <MapPin size={12} /> Find Clinic
+                    {/* Quick Actions (Chips) */}
+                    <div className="px-4 py-3 border-t border-slate-100 flex gap-2 overflow-x-auto no-scrollbar bg-white">
+                        <button onClick={() => handleSend("Where is the nearest ABC?")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
+                            <MapPin size={14} /> Find Clinic
                         </button>
-                        <button onClick={() => handleSend("What is the first aid for a bite?")} className="whitespace-nowrap bg-[#E4EB9C]/30 hover:bg-[#E4EB9C]/60 text-[#2D5128] text-[11px] font-bold px-3 py-1.5 rounded-full border border-[#8DA750]/40 transition-colors flex items-center gap-1">
-                            <Droplets size={12} /> First Aid
+                        <button onClick={() => handleSend("What is the first aid for a bite?")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
+                            <Droplets size={14} /> First Aid
                         </button>
-                        <button onClick={() => handleSend("Tell me about rabies")} className="whitespace-nowrap bg-[#E4EB9C]/30 hover:bg-[#E4EB9C]/60 text-[#2D5128] text-[11px] font-bold px-3 py-1.5 rounded-full border border-[#8DA750]/40 transition-colors flex items-center gap-1">
-                            <Info size={12} /> Rabies Info
+                        <button onClick={() => handleSend("Tell me about rabies")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
+                            <Info size={14} /> Rabies Info
                         </button>
                     </div>
 
-                    <div className="p-4 border-t border-[#8DA750]/30 bg-white flex gap-2">
+                    {/* Input Area */}
+                    <div className="p-4 border-t border-slate-100 bg-slate-50 flex gap-3">
                         <input
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && handleSend()}
                             placeholder="Ask about first aid..."
-                            className="flex-1 bg-[#E4EB9C]/10 border border-[#8DA750]/40 rounded-xl px-4 py-2 text-sm text-[#142C14] placeholder:text-[#142C14]/40 focus:ring-2 focus:ring-[#537B2F] outline-none transition-all"
+                            className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all shadow-sm"
                         />
-                        <button onClick={() => handleSend()} className="bg-[#2D5128] text-white p-2.5 rounded-xl hover:bg-[#142C14] active:scale-95 transition-all">
-                            <Send size={18} />
+                        <button onClick={() => handleSend()} className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 shadow-md active:scale-95 transition-all">
+                            <Send size={20} />
                         </button>
                     </div>
                 </div>
             )}
 
+            {/* Floating Action Button (More Noticeable) */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-16 h-16 bg-[#2D5128] text-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition-all active:scale-95 border-4 border-white"
+                className={cn(
+                    "relative w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 border-4 border-white",
+                    isOpen 
+                        ? "bg-slate-900 text-white shadow-lg rotate-90 hover:scale-105" 
+                        : "bg-green-600 text-white shadow-xl shadow-green-900/20 hover:scale-105 hover:bg-green-700 hover:shadow-green-900/30 active:scale-95"
+                )}
             >
-                {isOpen ? <X size={30} /> : <MessageCircle size={30} />}
+                {/* Noticeable Red Notification Dot (Only when closed) */}
+                {!isOpen && (
+                    <span className="absolute top-0 right-0 flex h-4 w-4 z-10">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+                    </span>
+                )}
+                
+                {isOpen ? <X size={28} className="-rotate-90 transition-transform" /> : <MessageCircle size={28} />}
             </button>
         </div>
     );
