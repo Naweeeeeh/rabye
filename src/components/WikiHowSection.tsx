@@ -1,4 +1,4 @@
-import { ShieldAlert, CheckCircle2, AlertTriangle, AlertOctagon, Syringe } from "lucide-react";
+import {CheckCircle2, AlertTriangle, AlertOctagon} from "lucide-react";
 
 import category1 from "/public/category1.jpg";
 import category2 from "/public/category2.jpg";
