@@ -1,5 +1,14 @@
 import { ShieldAlert, CheckCircle2, AlertTriangle, AlertOctagon, Syringe } from "lucide-react";
 
+import category1 from "/public/category1.jpg";
+import category2 from "/public/category2.jpg";
+import category3 from "/public/category3.jpg";
+import animalbite from "/public/animalbite.jpg";
+import animalscratch from "/public/animalscratch.jpg";
+import lickonopenwound from "/public/lickonopenwound.jpg";
+import salivaexposure from "/public/salivaexposure.jpg";
+import batexposure from "/public/batexposure.jpg";
+
 const WikiHowSection = () => (
     <section className="bg-white py-20 flex-1 flex flex-col justify-center">
         <div className="container max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -18,7 +27,7 @@ const WikiHowSection = () => (
                 <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 flex flex-col shadow-sm">
                     <div className="w-full h-48 bg-[#8DA750]/20 rounded-lg mb-6 flex items-center justify-center border border-[#8DA750]/30 overflow-hidden">
                         <img
-                            src="/public/category1.jpg"
+                            src={category1}
                             alt="Category I Exposure"
                             className="w-full h-full object-cover object-center"
                         />
@@ -38,7 +47,7 @@ const WikiHowSection = () => (
                 <div className="bg-[#8DA750]/20 border border-[#537B2F]/40 rounded-xl p-6 flex flex-col shadow-sm">
                     <div className="w-full h-48 bg-[#537B2F]/20 rounded-lg mb-6 flex items-center justify-center border border-[#537B2F]/30 overflow-hidden">
                         <img
-                            src="/public/category2.jpg"
+                            src={category2}
                             alt="Category II Exposure"
                             className="w-full h-full object-cover object-center"
                         />
@@ -58,7 +67,7 @@ const WikiHowSection = () => (
                 <div className="bg-[#142C14]/5 border border-[#142C14]/20 rounded-xl p-6 flex flex-col shadow-sm">
                     <div className="w-full h-48 bg-[#142C14]/10 rounded-lg mb-6 flex items-center justify-center border border-[#142C14]/20 overflow-hidden">
                         <img
-                            src="/public/category3.jpg"
+                            src={category3}
                             alt="Category III Exposure"
                             className="w-full h-full object-cover object-center"
                         />
@@ -87,10 +96,9 @@ const WikiHowSection = () => (
                 <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 shadow-sm flex flex-col">
                     <h4 className="font-heading font-bold text-xl mb-6 text-[#2D5128]">Scenario 1: Animal Bite (Dog/Cat/Monkey, etc.)</h4>
 
-                    {/* Image is now a banner ABOVE the text */}
                     <div className="w-full h-64 md:h-80 bg-[#8DA750]/20 rounded-lg mb-8 border border-[#8DA750]/30 overflow-hidden shadow-sm">
                         <img
-                            src="/public/animalbite.jpg"
+                            src={animalbite}
                             alt="First Aid Step-by-Step"
                             className="w-full h-full object-cover object-center"
                         />
@@ -120,7 +128,7 @@ const WikiHowSection = () => (
                     <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 shadow-sm flex flex-col">
                         <div className="w-full h-56 bg-[#8DA750]/20 rounded-lg mb-6 flex items-center justify-center border border-[#8DA750]/30 overflow-hidden">
                             <img
-                                src="/public/animalscratch.jpg"
+                                src={animalscratch}
                                 alt="Scenario 2: Scratch"
                                 className="w-full h-full object-cover object-center"
                             />
@@ -142,7 +150,7 @@ const WikiHowSection = () => (
                     <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 shadow-sm flex flex-col">
                         <div className="w-full h-56 bg-[#8DA750]/20 rounded-lg mb-6 flex items-center justify-center border border-[#8DA750]/30 overflow-hidden">
                             <img
-                                src="/public/lickonopenwound.jpg"
+                                src={lickonopenwound}
                                 alt="Scenario 3: Lick on Open Wound"
                                 className="w-full h-full object-cover object-center"
                             />
@@ -163,7 +171,7 @@ const WikiHowSection = () => (
                     <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 shadow-sm flex flex-col">
                         <div className="w-full h-56 bg-[#8DA750]/20 rounded-lg mb-6 flex items-center justify-center border border-[#8DA750]/30 overflow-hidden">
                             <img
-                                src="/public/salivaexposure.jpg"
+                                src={salivaexposure}
                                 alt="Scenario 4: Saliva Exposure"
                                 className="w-full h-full object-cover object-center"
                             />
@@ -184,7 +192,7 @@ const WikiHowSection = () => (
                     <div className="bg-[#E4EB9C]/30 border border-[#8DA750]/40 rounded-xl p-6 shadow-sm flex flex-col">
                         <div className="w-full h-56 bg-[#8DA750]/20 rounded-lg mb-6 flex items-center justify-center border border-[#8DA750]/30 overflow-hidden">
                             <img
-                                src="/public/batexposure.jpg"
+                                src={batexposure}
                                 alt="Scenario 5 & 6: Bat Exposure and Cuts"
                                 className="w-full h-full object-cover object-center"
                             />
