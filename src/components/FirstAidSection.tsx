@@ -2,10 +2,10 @@ import { Droplets, ShieldPlus, Hospital, Syringe, Info, ArrowRight, MapPin } fro
 import { NavLink } from "react-router-dom";
 
 // ⚠️ Add these images to your src/assets folder!
-import fa1 from "@/assets/logo.png";
-import fa2 from "@/assets/logo.png";
-import fa3 from "@/assets/logo.png";
-import fa4 from "@/assets/logo.png";
+import fa1 from "@/assets/wash-dog-bite-wound.png";
+import fa2 from "@/assets/antiseptic-img.png";
+import fa3 from "@/assets/medical-help.png";
+import fa4 from "@/assets/get-vaccinated.png";
 
 const steps = [
     { icon: Droplets, image: fa1, title: "Wash the Wound", desc: "Wash with soap and running water for at least 15 minutes.", num: "01" },
@@ -30,13 +30,13 @@ const FirstAidSection = () => (
                 {steps.map((s) => (
                     <div key={s.num} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 relative group hover:border-[#8DA750]/50 transition-all flex flex-col">
 
-            <span className="absolute top-4 right-6 text-4xl font-black text-slate-100 group-hover:text-[#E4EB9C]/70 transition-colors z-10">
+            <span className="absolute top-6 right-7 text-4xl font-black text-[#B6C1CC] group-hover:text-[#142C14]/70 transition-colors z-10">
               {s.num}
             </span>
 
                         {/* Image Banner */}
-                        <div className="w-full h-32 bg-slate-200 rounded-2xl mb-6 overflow-hidden shadow-inner relative z-0">
-                            <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <div className="w-full h-32 bg-white rounded-2xl mb-6 overflow-hidden shadow-inner relative z-0 p-3 flex items-center justify-center">
+                            <img src={s.image} alt={s.title} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                         </div>
 
                         <div className="w-12 h-12 rounded-xl bg-[#E4EB9C]/40 flex items-center justify-center mb-4">
