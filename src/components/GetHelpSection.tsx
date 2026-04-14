@@ -33,9 +33,39 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
     const popupsRef = useRef<{ [key: number]: maplibregl.Popup }>({});
 
     const currentCoordsRef = useRef<[number, number] | null>(null);
-    const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
     const [isLocating, setIsLocating] = useState(false);
     const [locationError, setLocationError] = useState("");
+
+    const handleFetchRoute = async (start: [number, number], end: [number, number]) => {
+        const url = `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=full&geometries=geojson`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
+                const route = data.routes[0].geometry;
+                const source = map.current?.getSource('route') as maplibregl.GeoJSONSource;
+
+                if (source) {
+                    source.setData({
+                        type: 'Feature',
+                        properties: {},
+                        geometry: route
+                    });
+                }
+
+                // Animate map to fit the new route beautifully
+                const bounds = new maplibregl.LngLatBounds().extend(start).extend(end);
+                map.current?.fitBounds(bounds, { padding: 80, duration: 2000 });
+            } else {
+                throw new Error("No driving route found");
+            }
+        } catch (error) {
+            console.error("Routing error:", error);
+            setLocationError("Could not calculate the route. The public routing server might be busy.");
+        }
+    };
 
     useEffect(() => {
         if (map.current || !mapContainer.current) return;
@@ -61,7 +91,7 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 source: 'route',
                 layout: { 'line-join': 'round', 'line-cap': 'round' },
                 paint: {
-                    'line-color': '#16a34a', // Matched to green-600
+                    'line-color': '#2D5128', // Your custom green
                     'line-width': 6,
                     'line-opacity': 0.8
                 }
@@ -77,16 +107,15 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 .setLngLat([center.lng, center.lat])
                 .setHTML(
                     `<div style="padding: 2px; font-family: ui-sans-serif, system-ui, sans-serif;">
-                       <h4 style="font-weight: 900; font-size: 14px; margin: 0 0 4px 0; color: #0f172a;">${center.name}</h4>
-                       <p style="font-size: 12px; color: #64748b; margin: 0 0 8px 0; line-height: 1.4;">${center.address}</p>
-                       <span style="font-size: 10px; background-color: #f0fdf4; color: #15803d; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid #bbf7d0;">Click for directions</span>
+                       <h4 style="font-weight: 900; font-size: 14px; margin: 0 0 4px 0; color: #142C14;">${center.name}</h4>
+                       <p style="font-size: 12px; color: #537B2F; margin: 0 0 8px 0; line-height: 1.4;">${center.address}</p>
+                       <span style="font-size: 10px; background-color: #E4EB9C; color: #2D5128; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid #8DA750;">Click for directions</span>
                      </div>`
                 );
 
             popupsRef.current[center.id] = popup;
 
-            // Updated Marker Color to green-600
-            const marker = new maplibregl.Marker({ color: "#16a34a" })
+            const marker = new maplibregl.Marker({ color: "#2D5128" })
                 .setLngLat([center.lng, center.lat])
                 .addTo(map.current!);
 
@@ -101,50 +130,33 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 popup.remove();
             });
 
-            el.addEventListener('click', (e) => {
+            // Handle marker click (fetches route and shows spinner)
+            const onMarkerClick = async (e: Event) => {
                 e.stopPropagation();
                 if (!popup.isOpen()) popup.addTo(map.current!);
+
                 if (currentCoordsRef.current) {
-                    handleFetchRoute(currentCoordsRef.current, [center.lng, center.lat]);
+                    setIsLocating(true); // Triggers the loading spinner so you know it clicked
+                    setLocationError("");
+                    await handleFetchRoute(currentCoordsRef.current, [center.lng, center.lat]);
+                    setIsLocating(false); // Stops spinner when route is drawn
                 } else {
                     setLocationError("Please click 'Use My Location' first to set your starting point.");
                 }
-            });
+            };
+
+            // Added touchstart for instant mobile responsiveness
+            el.addEventListener('click', onMarkerClick);
+            el.addEventListener('touchstart', onMarkerClick, { passive: true });
         });
 
         return () => {
             map.current?.remove();
             map.current = null;
         };
+        // Keeps the map from re-rendering and blinking
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const handleFetchRoute = async (start: [number, number], end: [number, number]) => {
-        const url = `https://router.project-osrm.org/route/v1/driving/${start[0]},${start[1]};${end[0]},${end[1]}?overview=full&geometries=geojson`;
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-
-            if (data.routes && data.routes.length > 0) {
-                const route = data.routes[0].geometry;
-                const source = map.current?.getSource('route') as maplibregl.GeoJSONSource;
-
-                if (source) {
-                    source.setData({
-                        type: 'Feature',
-                        properties: {},
-                        geometry: route
-                    });
-                }
-
-                const bounds = new maplibregl.LngLatBounds().extend(start).extend(end);
-                map.current?.fitBounds(bounds, { padding: 80, duration: 2000 });
-            }
-        } catch (error) {
-            console.error("Routing error:", error);
-            setLocationError("Could not calculate the route. The routing server might be busy.");
-        }
-    };
 
     const handleFindNearest = () => {
         setIsLocating(true);
@@ -163,7 +175,6 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                     const userLng = position.coords.longitude;
                     const userCoords: [number, number] = [userLng, userLat];
 
-                    setUserLocation(userCoords);
                     currentCoordsRef.current = userCoords;
 
                     if (typeof onLocationFound === 'function') {
@@ -188,13 +199,12 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                             userMarkerRef.current.remove();
                         }
 
-                        // Updated User Marker to match UI
                         const customMarkerEl = document.createElement('div');
                         customMarkerEl.innerHTML = `
-                            <div style="position: relative; width: 22px; height: 22px; background-color: #0f172a; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);">
-                                <div style="position: absolute; top: -36px; left: 50%; transform: translateX(-50%); background-color: #0f172a; color: white; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; pointer-events: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="position: relative; width: 22px; height: 22px; background-color: #142C14; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);">
+                                <div style="position: absolute; top: -36px; left: 50%; transform: translateX(-50%); background-color: #142C14; color: white; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; pointer-events: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                                     You
-                                    <div style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border-width: 6px 6px 0; border-style: solid; border-color: #0f172a transparent transparent transparent;"></div>
+                                    <div style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border-width: 6px 6px 0; border-style: solid; border-color: #142C14 transparent transparent transparent;"></div>
                                 </div>
                             </div>
                         `;
@@ -230,16 +240,15 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
     };
 
     return (
-        <section id="get-help" className="bg-white pt-10 pb-20 border-t border-slate-100 flex-1 flex flex-col justify-center">
-            <div className="container max-w-7xl px-4 md:px-6">
-                
-                {/* Neater Section Header */}
+        <section id="get-help" className="bg-white pt-10 pb-20 border-t border-slate-100 flex-1 flex flex-col justify-center overflow-hidden">
+            <div className="container max-w-7xl px-4 md:px-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
+
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E4EB9C]/40 text-[#2D5128] text-[10px] font-black uppercase tracking-[0.2em] mb-4">
                         Facility Locator
                     </div>
                     <h2 className="font-heading text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
-                        <MapPin className="text-green-600" size={32} /> Find Treatment
+                        <MapPin className="text-[#2D5128]" size={32} /> Find Treatment
                     </h2>
                     <p className="text-slate-500 max-w-2xl mx-auto mt-4 text-lg leading-relaxed">
                         Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.
@@ -247,26 +256,22 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8 w-full">
-                    
-                    {/* The Map Container - Styled cleanly */}
-                    <div className="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-slate-200">
-                        {/* CSS scoped to map popups to match UI */}
+
+                    <div className="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-[#E4EB9C]">
                         <style>{`.maplibregl-popup-content { border-radius: 1rem !important; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important; padding: 16px !important; border: 1px solid #f1f5f9 !important; }`}</style>
                         <div ref={mapContainer} className="w-full h-[500px] lg:h-[600px]" />
                     </div>
 
-                    {/* Action Cards Container */}
                     <div className="flex flex-col justify-start space-y-6 lg:col-span-1">
-                        
-                        {/* Interactive Geolocation Card */}
-                        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 transition-all hover:border-green-200">
+
+                        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-[#8DA750]/10 border border-slate-100 transition-all hover:border-[#8DA750]/50">
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                                    <Crosshair size={20} className="text-slate-700" />
+                                <div className="p-2.5 rounded-xl bg-[#E4EB9C]/20 border border-[#8DA750]/20">
+                                    <Crosshair size={20} className="text-[#2D5128]" />
                                 </div>
                                 <h3 className="font-heading font-black text-xl text-slate-900">Locate Yourself</h3>
                             </div>
-                            
+
                             <p className="text-sm text-slate-500 leading-relaxed mb-6">
                                 Allow location access to automatically find the fastest route to the nearest clinic.
                             </p>
@@ -274,7 +279,7 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                             <button
                                 onClick={handleFindNearest}
                                 disabled={isLocating}
-                                className="w-full h-14 inline-flex items-center justify-center rounded-xl bg-slate-900 text-white font-bold px-6 text-sm hover:bg-slate-800 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="w-full h-14 inline-flex items-center justify-center rounded-xl bg-[#142C14] text-[#E4EB9C] font-bold px-6 text-sm hover:bg-[#2D5128] transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isLocating ? (
                                     <span className="flex items-center gap-2">
@@ -286,29 +291,28 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                                 )}
                             </button>
                             {locationError && (
-                                <div className="mt-4 p-3 rounded-lg bg-red-50 text-red-600 text-xs font-bold border border-red-100">
+                                <div className="mt-4 p-3 rounded-lg bg-[#142C14]/5 text-[#142C14] text-xs font-bold border border-[#142C14]/20">
                                     {locationError}
                                 </div>
                             )}
                         </div>
 
-                        {/* Emergency Hotline Card (Matched to previous design) */}
-                        <div className="bg-white rounded-3xl p-8 border-2 border-green-600 shadow-2xl shadow-green-100 relative overflow-hidden">
-                            <HeartPulse className="absolute -bottom-4 -right-4 text-green-600 opacity-[0.03]" size={160} />
-                            
+                        <div className="bg-[#2D5128] rounded-3xl p-8 border border-[#142C14] shadow-2xl shadow-[#2D5128]/20 relative overflow-hidden">
+                            <HeartPulse className="absolute -bottom-4 -right-4 text-[#E4EB9C] opacity-10" size={160} />
+
                             <div className="flex items-center gap-2 mb-6">
-                                <span className="flex h-2 w-2 rounded-full bg-green-600 animate-pulse"></span>
-                                <span className="text-[10px] font-black text-green-700 uppercase tracking-widest">DOH Hotline</span>
+                                <span className="flex h-2 w-2 rounded-full bg-[#E4EB9C] animate-pulse"></span>
+                                <span className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-widest">DOH Hotline</span>
                             </div>
 
-                            <h3 className="font-heading font-black text-2xl text-slate-900 mb-2">Emergency</h3>
-                            <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+                            <h3 className="font-heading font-black text-2xl text-white mb-2">Emergency</h3>
+                            <p className="text-[#E4EB9C]/80 text-sm mb-6 leading-relaxed">
                                 Need immediate medical guidance? Call the health department directly.
                             </p>
-                            
-                            <a 
+
+                            <a
                                 href="tel:0286517800"
-                                className="group w-full h-14 inline-flex items-center justify-between px-5 rounded-xl bg-green-600 text-white transition-all hover:bg-green-700 shadow-lg shadow-green-200 active:scale-[0.98]"
+                                className="group w-full h-14 inline-flex items-center justify-between px-5 rounded-xl bg-[#142C14] text-white transition-all hover:bg-[#E4EB9C] hover:text-[#142C14] shadow-lg shadow-[#142C14]/50 active:scale-[0.98]"
                             >
                                 <div className="flex items-center gap-3">
                                     <Phone size={20} className="group-hover:rotate-12 transition-transform" />

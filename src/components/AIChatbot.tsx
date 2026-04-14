@@ -33,7 +33,7 @@ const AIChatBot = () => {
         }
 
         if (text.includes("bite") || text.includes("wash") || text.includes("first aid") || text.includes("scratch") || text.includes("bleeding")) {
-            return "IMMEDIATE ACTION: Wash the wound thoroughly with soap and running water for at least 15 minutes. This physically removes the virus and reduces infection risk by up to 90%. Afterward, apply povidone-iodine or alcohol, and go to an Animal Bite Treatment Center within 24 hours. Do NOT apply garlic or toothpaste.";
+            return "Wash the wound thoroughly with soap and running water for at least 15 minutes. This physically removes the virus and reduces infection risk by up to 90%. Afterward, apply povidone-iodine or alcohol, and go to an Animal Bite Treatment Center within 24 hours. Do NOT apply garlic or toothpaste.";
         }
 
         if (text.includes("rabies") || text.includes("deadly") || text.includes("fatal") || text.includes("what is")) {
@@ -65,7 +65,6 @@ const AIChatBot = () => {
             {isOpen && (
                 <div className="mb-4 w-[350px] sm:w-[380px] h-[550px] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
 
-                    {/* Chat Header - Slate for Authority */}
                     <div className="bg-slate-900 p-5 text-white flex items-center justify-between shadow-md z-10">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-green-900/50 border border-green-700 flex items-center justify-center">

@@ -11,7 +11,7 @@ const links = [
     { label: "Prevention", href: "/prevention" },
     { label: "First Aid", href: "/first-aid" },
     { label: "WikiHow", href: "/wikihow" },
-    { label: "Get Help", href: "/get-help", isCta: true },
+    { label: "Get Help", href: "/get-help", isCta: false },
 ];
 
 const Navbar = () => {
@@ -20,8 +20,7 @@ const Navbar = () => {
     return (
         <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
             <div className="container flex items-center justify-between h-16 px-4 max-w-7xl mx-auto">
-                
-                {/* Branding */}
+
                 <NavLink to="/" className="flex items-center gap-2 group transition-opacity hover:opacity-90">
                     <img
                         src={logo}
@@ -33,7 +32,6 @@ const Navbar = () => {
                     </span>
                 </NavLink>
 
-                {/* Desktop Navigation */}
                 <div className="hidden lg:flex items-center gap-8">
                     {links.map((l) => (
                         <NavLink
