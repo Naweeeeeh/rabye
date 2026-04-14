@@ -19,24 +19,11 @@ const FirstAidSection = () => (
         <div className="container px-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="text-center mb-10">
                 <h2 className="font-heading text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
-                    <Hospital className="text-[#2D5128]" size={32} />
                     First Aid After a Bite
                 </h2>
                 <p className="text-slate-600 max-w-xl mx-auto mt-3 text-base md:text-lg">
                     The first 15 minutes are critical. Follow these steps immediately.
                 </p>
-            </div>
-
-            <div className="max-w-xl mx-auto mb-10 bg-white border-l-4 border-[#2D5128] shadow-sm rounded-r-xl p-4 flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-[#E4EB9C]/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Info className="text-[#2D5128]" size={18} />
-                </div>
-                <div>
-                    <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider mb-0.5">Medical Advisory</h4>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                        Wound cleaning reduces viral load. Do not wait for symptoms before seeking care.
-                    </p>
-                </div>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto mb-12">

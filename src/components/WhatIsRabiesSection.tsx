@@ -20,7 +20,7 @@ const WhatIsRabiesSection = () => (
                     Viral Transmission
                 </div>
                 <h2 className="font-heading text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
-                    <Bug className="text-[#2D5128]" size={32} /> What is Rabies?
+                    What is Rabies?
                 </h2>
                 <p className="text-slate-500 max-w-xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
                     Rabies is a preventable yet deadly viral disease. Once it enters the nervous system, it becomes 100% fatal.
