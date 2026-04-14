@@ -52,21 +52,6 @@
     @apply border-border;
   }
 
-body {
-    @apply text-foreground font-sans;
-    background-color: #E4EB9C; /* Fallback */
-
-    /* The first part is the overlay, the second is the image */
-    background-image: 
-        linear-gradient(rgba(20, 44, 20, 0.6), rgba(20, 44, 20, 0.6)), 
-        url('./assets/texture.png'); 
-
-    /* THIS MAKES IT FIT */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
