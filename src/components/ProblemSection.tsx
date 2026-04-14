@@ -3,12 +3,12 @@ import { AlertTriangle, EyeOff, HeartCrack, ArrowUpRight } from "lucide-react";
 import problem1 from "/public/problem1.jpg";
 import problem2 from "/public/problem2.jpg";
 import problem3 from "/public/problem3.jpg";
-import texture from "/texture.png"
+import texture from "../assets/texture.png";
 
 const cards = [
     {
         icon: AlertTriangle,
-        image: problem1,
+        image: problem1,    
         title: "A Persistent Local Threat",
         desc: "Rabies remains an active national health problem. The Department of Health reported 426 rabies cases in 2024, and a total of 1,750 deaths from 2020 to 2024.",
         href: "https://www.southburnett.qld.gov.au/Living-Here/Resident-Information/Animal-Management/Dangerous-Menacing-Restricted-Dogs"
@@ -30,11 +30,12 @@ const cards = [
 ];
 
 const ProblemSection = () => (
-    <section 
-        id="problem" 
-        className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${texture})` }}
-    >
+        <section 
+            id="problem" 
+            className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
+            // Use the absolute path string directly
+            style={{ backgroundImage: `url(${texture})`}} 
+        >
         <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
 
         <div className="container max-w-7xl mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
