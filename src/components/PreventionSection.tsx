@@ -7,7 +7,7 @@ import prev4 from "@/assets/stray-animal-sighting.png";
 import prev5 from "@/assets/supervise-children.png";
 import prev6 from "@/assets/pet-on-leash.png";
 
-import texture from "/public/texture2.png"
+import texture from "/texture2.png"
 const items = [
     { 
         title: "Vaccinate your pets regularly", 

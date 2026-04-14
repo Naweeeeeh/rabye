@@ -3,7 +3,7 @@ import { AlertTriangle, EyeOff, HeartCrack, ArrowUpRight } from "lucide-react";
 import problem1 from "/public/problem1.jpg";
 import problem2 from "/public/problem2.jpg";
 import problem3 from "/public/problem3.jpg";
-import texture from "/public/texture.png"
+import texture from "/texture.png"
 
 const cards = [
     {

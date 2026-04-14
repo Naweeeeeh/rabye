@@ -4,7 +4,7 @@ import { Bug, Dog, Brain, ArrowUpRight, PlayCircle } from "lucide-react";
 import step1 from "@/assets/dog.jpg";
 import step2 from "@/assets/virus.png";
 import step3 from "@/assets/nervousSystem.jpg";
-import texture from "/public/texture1.png"
+import texture from "/texture1.png"
 
 const steps = [
     { 
