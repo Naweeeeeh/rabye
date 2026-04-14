@@ -1,11 +1,11 @@
 import { Check, ShieldCheck } from "lucide-react";
 
-import prev1 from "@/assets/logo.png";
-import prev2 from "@/assets/logo.png";
-import prev3 from "@/assets/logo.png";
-import prev4 from "@/assets/logo.png";
-import prev5 from "@/assets/logo.png";
-import prev6 from "@/assets/logo.png";
+import prev1 from "@/assets/pet-vaccine.png";
+import prev2 from "@/assets/avoid-stray-animals.png";
+import prev3 from "@/assets/child-with-dog.jpg";
+import prev4 from "@/assets/stray-animal-sighting.png";
+import prev5 from "@/assets/supervise-children.png";
+import prev6 from "@/assets/pet-on-leash.png";
 
 const items = [
     { title: "Vaccinate your pets regularly", image: prev1 },
@@ -36,8 +36,8 @@ const PreventionSection = () => (
                         className="group bg-slate-50 border border-slate-100 rounded-3xl p-5 transition-all hover:bg-white hover:shadow-xl hover:shadow-[#142C14]/5 hover:border-[#8DA750]/50 flex flex-col"
                     >
                         {/* Image Banner */}
-                        <div className="w-full h-40 bg-slate-200 rounded-2xl mb-5 overflow-hidden shadow-inner">
-                            <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <div className="w-full h-40 bg-white rounded-2xl mb-5 overflow-hidden shadow-inner p-4 flex items-center justify-center">
+                            <img src={item.image} alt={item.title} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                         </div>
 
                         <div className="flex items-start gap-3">

@@ -1,9 +1,9 @@
 import { Bug, Dog, Brain, ChevronRight, PlayCircle } from "lucide-react";
 
 // ⚠️ Add these images to your src/assets folder!
-import step1 from "@/assets/logo.png";
-import step2 from "@/assets/logo.png";
-import step3 from "@/assets/logo.png";
+import step1 from "@/assets/dog.jpg";
+import step2 from "@/assets/virus.png";
+import step3 from "@/assets/nervousSystem.jpg";
 
 const steps = [
     { icon: Dog, image: step1, title: "Initial Bite", desc: "The virus enters the body through an animal bite or scratch." },
@@ -33,8 +33,8 @@ const WhatIsRabiesSection = () => (
                         <div className="group bg-slate-50 rounded-3xl p-6 text-center w-full lg:w-80 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-[#142C14]/5 hover:border-[#8DA750]/50 flex flex-col">
 
                             {/* Image Banner */}
-                            <div className="w-full h-36 bg-slate-200 rounded-2xl mb-6 overflow-hidden shadow-inner">
-                                <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                            <div className="w-full h-36 bg-white rounded-2xl mb-6 overflow-hidden shadow-inner p-4 flex items-center justify-center">
+                                <img src={s.image} alt={s.title} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                             </div>
 
                             <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center mx-auto mb-4 group-hover:bg-[#2D5128] transition-colors">
