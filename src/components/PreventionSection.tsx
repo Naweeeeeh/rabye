@@ -7,6 +7,7 @@ import prev4 from "@/assets/stray-animal-sighting.png";
 import prev5 from "@/assets/supervise-children.png";
 import prev6 from "@/assets/pet-on-leash.png";
 
+import texture from "/public/texture2.png"
 const items = [
     { 
         title: "Vaccinate your pets regularly", 
@@ -44,7 +45,7 @@ const PreventionSection = () => (
     <section 
         id="prevention" 
         className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/public/texture2.png')" }}
+        style={{ backgroundImage:`url(${texture})`}}
     >
         {/* Subtle texture overlay for visual depth */}
         <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>

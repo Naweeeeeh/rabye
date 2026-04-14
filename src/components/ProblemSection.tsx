@@ -33,7 +33,7 @@ const ProblemSection = () => (
     <section 
         id="problem" 
         className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/public/texture.png')" }}
+        style={{ backgroundImage: `url(${texture})` }}
     >
         <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
 

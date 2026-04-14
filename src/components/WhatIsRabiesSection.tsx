@@ -4,6 +4,7 @@ import { Bug, Dog, Brain, ArrowUpRight, PlayCircle } from "lucide-react";
 import step1 from "@/assets/dog.jpg";
 import step2 from "@/assets/virus.png";
 import step3 from "@/assets/nervousSystem.jpg";
+import texture from "/public/texture1.png"
 
 const steps = [
     { 
@@ -33,7 +34,7 @@ const WhatIsRabiesSection = () => (
     <section 
         id="what-is-rabies" 
         className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/public/texture1.png')" }}
+        style={{ backgroundImage: `url(${texture})` }}
     >
         {/* Subtle texture overlay for depth */}
         <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
