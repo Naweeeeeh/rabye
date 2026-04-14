@@ -6,6 +6,7 @@ import fa1 from "@/assets/wash-dog-bite-wound.png";
 import fa2 from "@/assets/antiseptic-img.png";
 import fa3 from "@/assets/medical-help.png";
 import fa4 from "@/assets/get-vaccinated.png";
+import texture from "../assets/texture.png";
 
 const steps = [
     { 
@@ -41,57 +42,62 @@ const steps = [
 const FirstAidSection = () => (
     <section 
         id="first-aid" 
-        className="bg-white py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden"
+        className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${texture})` }}
     >
-        <div className="container max-w-7xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
+
+        <div className="container max-w-7xl mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
             
-            {/* Header: High Contrast, High Alert */}
+            {/* Header */}
             <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-600/10 text-red-600 text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-red-600/20">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/20 text-red-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-red-500/30 animate-pulse">
                     Emergency Response
                 </div>
-                <h2 className="font-heading text-3xl md:text-5xl font-black text-[#142C14] tracking-tight">
+                <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
                     First Aid After a Bite
                 </h2>
-                <p className="text-slate-500 max-w-xl mx-auto mt-6 text-lg leading-relaxed font-medium">
-                    The first 15 minutes decide the outcome. Follow these medical protocols <span className="text-red-600 font-bold uppercase tracking-tighter">immediately</span>.
+                <p className="text-[#E4EB9C]/80 max-w-xl mx-auto mt-6 text-lg leading-relaxed font-medium">
+                    The first 15 minutes decide the outcome. Follow these medical protocols <span className="text-red-400 font-bold uppercase tracking-tighter">immediately</span>.
                 </p>
             </div>
 
-            {/* Steps Grid: Ultra-Clean Utility Cards */}
+            {/* Steps Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
                 {steps.map((s) => (
                     <div 
                         key={s.num} 
-                        className="group relative bg-slate-50 rounded-[2.5rem] p-6 flex flex-col border border-slate-100 transition-all duration-300 hover:bg-white hover:shadow-2xl hover:shadow-[#142C14]/10 hover:border-[#8DA750]/50"
+                        className="group relative bg-white rounded-[2.5rem] p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50"
                     >
                         {/* Ghost Numbering */}
-                        <span className="absolute top-6 right-8 text-5xl font-black text-[#142C14]/5 group-hover:text-[#142C14]/10 transition-colors">
+                        <span className="absolute top-6 right-8 text-5xl font-black text-[#142C14]/5 group-hover:text-[#2D5128]/10 transition-colors z-10">
                             {s.num}
                         </span>
 
-                        {/* Image Container */}
-                        <div className="relative w-full h-40 mb-10 rounded-[1.8rem] overflow-hidden bg-white shadow-inner p-4 flex items-center justify-center">
+                        {/* Image Container - No Grayscale, No Overlapping Badges */}
+                        <div className="relative w-full h-40 mb-8 rounded-[1.8rem] overflow-hidden bg-slate-50 border border-slate-100 p-4">
                             <img 
                                 src={s.image} 
                                 alt={s.title} 
-                                className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110" 
+                                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" 
                             />
-                            
-                            {/* Step Badge */}
-                            <div className="absolute -bottom-2 -left-2 w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg border-[6px] border-white z-10">
-                                <div className="w-full h-full bg-[#E4EB9C] rounded-xl flex items-center justify-center text-[#2D5128]">
-                                    <s.icon size={22} strokeWidth={3} />
-                                </div>
-                            </div>
                         </div>
 
-                        {/* Content */}
-                        <div className="px-2 flex-1">
-                            <h3 className="font-heading font-black text-[#142C14] text-lg mb-2 leading-tight">
-                                {s.title}
-                            </h3>
-                            <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                        {/* Content Area with Inline Icon */}
+                        <div className="px-2 flex-1 flex flex-col">
+                            <div className="flex items-center gap-3 mb-3">
+                                {/* The Icon */}
+                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#E4EB9C]/40 flex items-center justify-center text-[#2D5128] transition-colors group-hover:bg-[#2D5128] group-hover:text-[#E4EB9C]">
+                                    <s.icon size={20} strokeWidth={2.5} />
+                                </div>
+                                {/* The Title */}
+                                <h3 className="font-heading font-black text-[#142C14] text-lg leading-tight group-hover:text-[#2D5128] transition-colors">
+                                    {s.title}
+                                </h3>
+                            </div>
+                            
+                            {/* The Description */}
+                            <p className="text-xs text-[#142C14]/70 leading-relaxed font-medium">
                                 {s.desc}
                             </p>
                         </div>
@@ -99,20 +105,20 @@ const FirstAidSection = () => (
                 ))}
             </div>
 
-            {/* Critical Action Area */}
+            {/* Action Area */}
             <div className="flex flex-col items-center gap-6">
                 <NavLink
                     to="/get-help"
-                    className="group relative inline-flex items-center justify-center rounded-2xl bg-red-600 text-white font-black px-10 py-5 text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-red-200 active:scale-[0.98]"
+                    className="group relative inline-flex items-center justify-center rounded-2xl bg-red-600 text-white font-black px-10 py-5 text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-xl shadow-red-900/40 active:scale-[0.98]"
                 >
                     <MapPin className="mr-2 h-4 w-4" />
                     Find Nearest Treatment Center
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </NavLink>
                 
-                <div className="flex items-center gap-3 px-5 py-2 rounded-xl bg-slate-100 border border-slate-200">
+                <div className="flex items-center gap-3 px-5 py-2 rounded-xl bg-[#142C14]/40 backdrop-blur-md border border-[#8DA750]/20 shadow-xl">
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                    <p className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-[0.2em]">
                         Local ABTC Units • Open 24/7
                     </p>
                 </div>
