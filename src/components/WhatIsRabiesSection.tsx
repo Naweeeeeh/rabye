@@ -1,6 +1,5 @@
 import { Bug, Dog, Brain, ArrowUpRight, PlayCircle } from "lucide-react";
 
-// ⚠️ Ensure these paths match your folder structure
 import step1 from "@/assets/dog.jpg";
 import step2 from "@/assets/virus.png";
 import step3 from "@/assets/nervousSystem.jpg";
@@ -12,21 +11,18 @@ const steps = [
         image: step1, 
         title: "Initial Bite", 
         desc: "The virus enters the body through an animal bite or scratch.",
-        href: "/what-is-rabies#transmission"
     },
     { 
         icon: Bug, 
         image: step2, 
         title: "Viral Infection", 
         desc: "The virus begins to multiply at the site of the wound.",
-        href: "/what-is-rabies#multiplication"
     },
     { 
         icon: Brain, 
         image: step3, 
         title: "Nervous System", 
         desc: "It travels along the nerves to the brain, causing fatal inflammation.",
-        href: "/what-is-rabies#nervous-system"
     },
 ];
 
@@ -41,7 +37,6 @@ const WhatIsRabiesSection = () => (
 
         <div className="container max-w-7xl mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
 
-            {/* Section Header */}
             <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4EB9C]/10 text-[#E4EB9C] text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-[#E4EB9C]/20">
                     Viral Transmission
@@ -59,7 +54,6 @@ const WhatIsRabiesSection = () => (
                 {steps.map((s) => (
                     <a
                         key={s.title}
-                        href={s.href}
                         className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50 cursor-pointer"
                     >
                         {/* Link Icon in Top Right */}

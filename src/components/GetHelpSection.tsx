@@ -4,11 +4,11 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const biteCenters = [
-    { id: 1, name: "ABC Animal Bite Center - Cebu City", address: "B. Rodriguez St, Cebu City, 6000 Cebu", lng: 123.891338, lat: 10.3089952 },
-    { id: 2, name: "Guadalupe-Banawa CEBU Animal Bite Center", address: "8V8P+J57, Cebu City, 6000 Cebu", lng: 123.88497, lat: 10.3165395 },
-    { id: 3, name: "Rabies Buster / RB ABC (Cebu City)", address: "Rm 203, The River Gate Complex, 18 Gen. Maxilom Ave, Cebu City, 6000", lng: 123.8997473, lat: 10.3117381 },
-    { id: 4, name: "ABC Animal Bite Center - Banilad", address: "2010, 2FL, LDM Building, Gov. M. Cuenco Ave, Cebu City, 6000", lng: 123.9126438, lat: 10.3494522 },
-    { id: 5, name: "Rabies Buster - Talisay City Branch", address: "Talisay City, Cebu", lng: 123.8390731, lat: 10.2544932 },
+    { id: 1, name: "ABC Animal Bite Center - Cebu City", address: "B. Rodriguez St, Cebu City, 6000 Cebu", contact: "09054134420", lng: 123.891338, lat: 10.3089952 },
+    { id: 2, name: "Guadalupe-Banawa CEBU Animal Bite Center", address: "8V8P+J57, Cebu City, 6000 Cebu", contact:"", lng: 123.88497, lat: 10.3165395 },
+    { id: 3, name: "Rabies Buster / RB ABC (Cebu City)", address: "Rm 203, The River Gate Complex, 18 Gen. Maxilom Ave, Cebu City, 6000", contact: "09054406971", lng: 123.8997473, lat: 10.3117381 },
+    { id: 4, name: "ABC Animal Bite Center - Banilad", address: "2010, 2FL, LDM Building, Gov. M. Cuenco Ave, Cebu City, 6000", contact: "09687327917", lng: 123.9126438, lat: 10.3494522 },
+    { id: 5, name: "Rabies Buster - Talisay City Branch", address: "Stall No. 6, Krystal Mall, San Isidro Road, Talisay, 6045 Cebu", contact: "09621467448", lng: 123.8390731, lat: 10.2544932 },
 ];
 
 const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -55,7 +55,6 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                     });
                 }
 
-                // Animate map to fit the new route beautifully
                 const bounds = new maplibregl.LngLatBounds().extend(start).extend(end);
                 map.current?.fitBounds(bounds, { padding: 80, duration: 2000 });
             } else {
@@ -109,6 +108,7 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                     `<div style="padding: 2px; font-family: ui-sans-serif, system-ui, sans-serif;">
                        <h4 style="font-weight: 900; font-size: 14px; margin: 0 0 4px 0; color: #142C14;">${center.name}</h4>
                        <p style="font-size: 12px; color: #537B2F; margin: 0 0 8px 0; line-height: 1.4;">${center.address}</p>
+                       <p style="font-size: 12px; color: #537B2F; margin: 0 0 8px 0; line-height: 1.4;">Contact: ${center.contact}</p>
                        <span style="font-size: 10px; background-color: #E4EB9C; color: #2D5128; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid #8DA750;">Click for directions</span>
                      </div>`
                 );
