@@ -3,6 +3,7 @@ import { AlertTriangle, EyeOff, HeartCrack, ArrowUpRight } from "lucide-react";
 import problem1 from "/public/problem1.jpg";
 import problem2 from "/public/problem2.jpg";
 import problem3 from "/public/problem3.jpg";
+import texture from "/public/texture.png"
 
 const cards = [
     {
@@ -32,7 +33,7 @@ const ProblemSection = () => (
     <section 
         id="problem" 
         className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/src/assets/texture.png')" }}
+        style={{ backgroundImage: "url('/public/texture.png')" }}
     >
         <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
 
