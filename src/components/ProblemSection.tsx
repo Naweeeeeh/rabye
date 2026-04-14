@@ -1,4 +1,4 @@
-import { AlertTriangle, EyeOff, HeartCrack } from "lucide-react";
+import { AlertTriangle, EyeOff, HeartCrack, ArrowUpRight } from "lucide-react";
 
 import problem1 from "/public/problem1.jpg";
 import problem2 from "/public/problem2.jpg";
@@ -9,68 +9,93 @@ const cards = [
         icon: AlertTriangle,
         image: problem1,
         title: "A Persistent Local Threat",
-        desc: "Rabies remains an active national health problem. The Department of Health reported 426 rabies cases in 2024, and a total of 1,750 deaths from 2020 to 2024."
+        desc: "Rabies remains an active national health problem. The Department of Health reported 426 rabies cases in 2024, and a total of 1,750 deaths from 2020 to 2024.",
+        href: "https://www.southburnett.qld.gov.au/Living-Here/Resident-Information/Animal-Management/Dangerous-Menacing-Restricted-Dogs"
     },
     {
         icon: EyeOff,
         image: problem2,
         title: "Dangerous Misinformation",
-        desc: "Many hide bite incidents due to fear or misunderstanding. A recent tragic case of a 13-year-old girl in Manila who hid her bite emphasizes the urgent need for health education."
+        desc: "Many hide bite incidents due to fear or misunderstanding. A recent tragic case of a 13-year-old girl in Manila who hid her bite emphasizes the urgent need for health education.",
+        href: "https://climatepromise.undp.org/news-and-stories/what-are-climate-misinformation-and-disinformation-and-how-can-we-tackle-them"
     },
     {
         icon: HeartCrack,
         image: problem3,
-        title: "100% Fatal, 100% Preventable",
-        desc: "Once symptoms appear, the disease is virtually 100% fatal. However, immediate washing of bite wounds and prompt post-exposure prophylaxis are critical in preventing death."
+        title: "100% Fatal, Preventable",
+        desc: "Once symptoms appear, the disease is virtually 100% fatal. However, immediate washing of bite wounds and prompt post-exposure prophylaxis are critical in preventing death.",
+        href: "https://www.who.int/philippines/news/feature-stories/detail/world-rabies-day-rabies-prevention-in-typhoon-yolanda-affected-areas"
     },
 ];
 
 const ProblemSection = () => (
-    <section id="problem" className="bg-slate-50 py-24 border-t border-slate-100 overflow-hidden">
-        <div className="container max-w-6xl px-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
+    <section 
+        id="problem" 
+        className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/src/assets/texture.png')" }}
+    >
+        <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
 
+        <div className="container max-w-7xl mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
+
+            {/* Section Header */}
             <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E4EB9C]/50 text-[#2D5128] text-[10px] font-black uppercase tracking-[0.2em] mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4EB9C]/10 text-[#E4EB9C] text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-[#E4EB9C]/20">
                     Current Crisis
                 </div>
-                <h2 className="font-heading text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
+                <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
                     The Problem
                 </h2>
-                <p className="text-slate-500 max-w-2xl mx-auto mt-6 text-lg leading-relaxed">
+                <p className="text-[#E4EB9C]/80 max-w-2xl mx-auto mt-6 text-lg leading-relaxed font-medium">
                     Rabies remains one of the most neglected tropical diseases, disproportionately affecting vulnerable communities in the Philippines.
                 </p>
             </div>
 
+            {/* Cards Grid */}
             <div className="grid md:grid-cols-3 gap-8">
                 {cards.map((c) => (
-                    <div
+                    <a
                         key={c.title}
-                        className="group bg-white rounded-3xl p-8 flex flex-col shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-2xl hover:shadow-[#142C14]/5 hover:-translate-y-1 hover:border-[#8DA750]/50"
+                        href={c.href}
+                        className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50 cursor-pointer"
                     >
-                        <div className="w-full h-48 bg-slate-100 rounded-2xl mb-8 overflow-hidden">
+                        {/* New: Hyperlink Icon in Top Right */}
+                        <div className="absolute top-6 right-6 z-20 w-8 h-8 rounded-full bg-[#E4EB9C]/20 flex items-center justify-center text-[#2D5128] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:rotate-12">
+                            <ArrowUpRight size={18} strokeWidth={3} />
+                        </div>
+
+                        {/* Image Container */}
+                        <div className="relative w-full h-56 mb-12 rounded-[1.8rem] overflow-hidden bg-slate-100">
                             <img
                                 src={c.image}
                                 alt={c.title}
-                                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                                className="w-full h-full object-cover object-center grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                             />
+                            
+                            {/* The Overlapping Icon Badge */}
+                            <div className="absolute bottom-2 left-6 w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg border-[6px] border-white z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                                <div className="w-full h-full bg-[#E4EB9C]/30 rounded-xl flex items-center justify-center text-[#2D5128] transition-colors group-hover:bg-[#2D5128] group-hover:text-[#E4EB9C]">
+                                    <c.icon size={20} strokeWidth={2.5} />
+                                </div>
+                            </div>
                         </div>
 
-                        <h3 className="font-heading font-black text-slate-900 text-xl mb-4 flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-[#E4EB9C]/40 flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-[#2D5128] text-[#2D5128] group-hover:text-[#E4EB9C]">
-                    <c.icon size={20} />
-                </span>
-                            {c.title}
-                        </h3>
-
-                        <p className="text-sm text-slate-500 leading-relaxed flex-1">
-                            {c.desc}
-                        </p>
-                    </div>
+                        {/* Text Content */}
+                        <div className="px-3 pb-2 flex-1 flex flex-col">
+                            <h3 className="font-heading font-black text-[#142C14] text-xl md:text-2xl mb-4 leading-tight group-hover:text-[#2D5128] transition-colors">
+                                {c.title}
+                            </h3>
+                            <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium flex-1">
+                                {c.desc}
+                            </p>
+                        </div>
+                    </a>
                 ))}
             </div>
 
-            <div className="mt-16 pt-8 border-t border-slate-200/60 text-center">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+            {/* Footer Note */}
+            <div className="mt-20 pt-8 border-t border-[#8DA750]/20 text-center">
+                <p className="text-[10px] font-black text-[#E4EB9C]/50 uppercase tracking-[0.3em]">
                     Global Health Burden • Southeast Asia Region
                 </p>
             </div>

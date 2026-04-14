@@ -24,17 +24,9 @@ const stats = [
 ];
 
 const HeroSection = () => (
-    <section className="bg-background pb-16 md:pb-24 pt-8 overflow-hidden relative">
+    <section className="bg-white pb-16 md:pb-24 pt-8 overflow-hidden relative">
 
         <div className="container px-4">
-
-            {/* NEW: Upper Right Bold Text (No background, No highlight) */}
-            <div className="w-full flex justify-end mb-10 md:mb-14 animate-in fade-in slide-in-from-right-8 duration-700">
-                <h2 className="font-heading font-black text-xl md:text-2xl lg:text-3xl text-[#142C14] text-right tracking-tight">
-                    SAYING GOODBYE TO RABIES, <br className="hidden sm:block" />
-                    <span className="text-[#2D5128]">ONE BITE AT A TIME.</span>
-                </h2>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
 
