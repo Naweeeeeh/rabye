@@ -51,9 +51,6 @@ const WikiHowSection = () => (
                     <div className="px-2 flex flex-col flex-1">
                         {/* Inline Icon & Title */}
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#E4EB9C]/40 flex items-center justify-center text-[#2D5128] transition-colors group-hover:bg-[#2D5128] group-hover:text-[#E4EB9C]">
-                                <CheckCircle2 size={20} strokeWidth={2.5} />
-                            </div>
                             <h4 className="font-heading font-black text-[#142C14] text-xl leading-tight group-hover:text-[#2D5128] transition-colors">
                                 Category I
                             </h4>
@@ -79,9 +76,6 @@ const WikiHowSection = () => (
                     <div className="px-2 flex flex-col flex-1">
                         {/* Inline Icon & Title */}
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 transition-colors group-hover:bg-orange-500 group-hover:text-white">
-                                <AlertTriangle size={20} strokeWidth={2.5} />
-                            </div>
                             <h4 className="font-heading font-black text-[#142C14] text-xl leading-tight group-hover:text-[#2D5128] transition-colors">
                                 Category II
                             </h4>
@@ -105,11 +99,7 @@ const WikiHowSection = () => (
                     </div>
                     
                     <div className="px-2 flex flex-col flex-1">
-                        {/* Inline Icon & Title */}
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600 transition-colors group-hover:bg-red-600 group-hover:text-white">
-                                <AlertOctagon size={20} strokeWidth={2.5} />
-                            </div>
                             <h4 className="font-heading font-black text-[#142C14] text-xl leading-tight group-hover:text-[#2D5128] transition-colors">
                                 Category III
                             </h4>
@@ -142,9 +132,6 @@ const WikiHowSection = () => (
                     
                     {/* Inline Icon in Title */}
                     <h4 className="font-heading font-black text-2xl mb-8 text-[#142C14] flex items-center gap-4">
-                        <div className="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <ShieldAlert size={22} strokeWidth={2.5} />
-                        </div>
                         Scenario 1: Animal Bite (Dog/Cat/Monkey)
                     </h4>
 
@@ -218,7 +205,7 @@ const WikiHowSection = () => (
                             {/* Warning Box - High Contrast */}
                             <div className="bg-red-50 border border-red-100 p-6 rounded-2xl mt-8">
                                 <strong className="text-red-700 font-black flex items-center gap-2 mb-3 text-lg">
-                                    <AlertTriangle size={20} /> DO NOT DO THIS:
+                                    DO NOT DO THIS:
                                 </strong>
                                 <ul className="list-disc pl-5 space-y-2 text-red-900/80 text-sm font-medium">
                                     <li>Apply traditional remedies (toothpaste, garlic, oil)</li>
@@ -258,7 +245,6 @@ const WikiHowSection = () => (
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 4:</strong> Seek medical care. Vaccination usually required.</li>
                             </ul>
                             <div className="mt-6 bg-[#E4EB9C]/20 p-4 rounded-xl border border-[#8DA750]/30 text-xs font-bold text-[#2D5128] flex items-start gap-3">
-                                <Info size={16} className="text-[#537B2F] flex-shrink-0" />
                                 <span>Philippine note: Even "minor scratches" are treated cautiously due to high rabies prevalence.</span>
                             </div>
                         </div>
@@ -287,7 +273,6 @@ const WikiHowSection = () => (
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Seek urgent care.</li>
                             </ul>
                             <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 text-xs font-bold text-red-700 flex items-start gap-3">
-                                <AlertOctagon size={16} className="flex-shrink-0" />
                                 <span>Automatically Category III. Requires RIG + vaccine.</span>
                             </div>
                         </div>
@@ -320,7 +305,6 @@ const WikiHowSection = () => (
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Seek urgent care.</li>
                             </ul>
                             <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 text-xs font-bold text-red-700 flex items-start gap-3">
-                                <AlertOctagon size={16} className="flex-shrink-0" />
                                 <span>Considered Category III exposure.</span>
                             </div>
                         </div>
