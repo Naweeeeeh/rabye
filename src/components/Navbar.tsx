@@ -11,7 +11,7 @@ const links = [
     { label: "What is Rabies?", href: "/what-is-rabies" },
     { label: "Prevention", href: "/prevention" },
     { label: "First Aid", href: "/first-aid" },
-    { label: "WikiHow", href: "/wikihow" },
+    { label: "Treatment Strategies", href: "/wikihow" },
     { label: "Get Help", href: "/get-help", isCta: false },
 ];
 

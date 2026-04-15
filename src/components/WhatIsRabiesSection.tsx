@@ -121,9 +121,9 @@ const WhatIsRabiesSection = () => {
                                 {t("Understanding the Viral Clock")}
                             </h4>
                             
-                            <div className="bg-red-600/10 border border-red-500/20 rounded-2xl p-5">
+                            <div className="bg-[#142C14] backdrop-blur-md border border-[#8DA750]/30 shadow-xl rounded-2xl p-5">
                                 <p className="text-white text-sm leading-relaxed">
-                                    <span className="text-red-500 font-black mr-2 uppercase tracking-tighter">{t("Critical Alert:")}</span>
+                                    <span className="text-[#E4EB9C] font-black mr-2 uppercase tracking-tighter">{t("Critical Alert:")}</span>
                                     {t("Treatment must begin immediately after a bite. Once physical symptoms appear, it is 100% too late for medical intervention.")}
                                 </p>
                             </div>

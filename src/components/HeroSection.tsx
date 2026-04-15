@@ -7,19 +7,19 @@ const stats = [
     {
         icon: ShieldCheck,
         value: "59,000",
-        label: "Deaths annually worldwide",
+        label: "Rabies Deaths annually worldwide",
         href: "https://rabiesalliance.org/about/our-story/rabies#:~:text=An%20estimated%2059%2C000%20people%20die,from%20medical%20and%20veterinary%20services."
     },
     {
         icon: Users,
         value: "40%",
-        label: "Of victims are children under 15",
+        label: "Of Rabies victims are children under 15",
         href: "https://www.who.int/news-room/fact-sheets/detail/rabies#:~:text=Key%20facts,fatal%20in%20100%25%20of%20cases."
     },
     {
         icon: Dog,
         value: "99%",
-        label: "Caused by dog bites",
+        label: "OF RABIES CASES IN HUMANS caused by dog bites",
         href: "https://www.woah.org/en/disease/rabies/#:~:text=With%20a%20fatality%20rate%20of,towards%20a%20rabies%2Dfree%20future."
     },
 ];
@@ -35,14 +35,22 @@ const HeroSection = () => {
 
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 py-4">
 
-                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-                        {t("Rabies is Fatal.")} <br/>
-                        {t("Your Action Now is the Only Cure.")}
-                    </h1>
+                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight">
+                    <span 
+                        className="font-black tracking-tighter bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent"
+                        style={{ WebkitTextStroke: "1.5px transparent" }} // This forces the browser to thicken the stroke
+                    >
+                        Rabies is Fatal.
+                    </span> 
+                    <br/>
+                    <span className="font-extrabold text-slate-800 tracking-tight">
+                        Your Action Now is the Only Cure.
+                    </span>
+                </h1>
 
 
                     <p className="text-muted-foreground text-lg max-w-lg leading-relaxed">
-                        {t("Symptoms don’t show up immediately, but by the time they do, it is 100% too late. If you’ve been bitten or scratched, do not wait. Follow these emergency steps now.")}
+                        Symptoms don’t show up immediately, but by the time they do, it is <strong className="text-slate-900">100% too late</strong>. If you’ve been bitten or scratched, <span className="text-[#142C14] font-black uppercase tracking-wider">DO NOT WAIT</span>. Follow these emergency steps now.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -55,7 +63,7 @@ const HeroSection = () => {
                                 <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-white bg-red-500 shadow-sm"></span>
                             </span>
 
-                            {t("Emergency Bite First Aid")}
+                            ACT NOW: Bite Protocol
                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </NavLink>
 

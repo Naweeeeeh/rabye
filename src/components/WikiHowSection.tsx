@@ -1,4 +1,12 @@
-import { CheckCircle2, AlertTriangle, AlertOctagon, Info, ShieldAlert } from "lucide-react";
+import { 
+    CheckCircle2, 
+    AlertTriangle, 
+    AlertOctagon, 
+    Info, 
+    ShieldAlert,
+    BookOpen,
+    ExternalLink
+} from "lucide-react";
 
 import category1 from "/public/category1.jpg";
 import category2 from "/public/category2.jpg";
@@ -41,8 +49,7 @@ const WikiHowSection = () => {
 
             {/* Part 1: Classification */}
             <h3 className="font-heading font-black text-2xl mb-8 text-white flex items-center gap-3 border-b border-white/10 pb-4">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#E4EB9C]/20 text-[#E4EB9C] text-sm">1</span>
-                {t("Exposure Scenarios (PH Classification)")}
+                Exposure Categories (PH Classification)
             </h3>
 
             <div className="grid md:grid-cols-3 gap-8 mb-24">
@@ -90,7 +97,7 @@ const WikiHowSection = () => {
                             <li><strong className="text-[#142C14] font-black">{t("Nibbling of uncovered skin")}</strong></li>
                             <li>{t("Minor scratches (no bleeding)")}</li>
                         </ul>
-                        <div className="mt-auto bg-orange-100 text-orange-700 text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit border border-orange-200">
+                        <div className="mt-auto border-[#8DA750]/30 bg-[#8DA750]/20 text-[#2D5128] text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit borde">
                             {t("Needs Vaccine")}
                         </div>
                     </div>
@@ -117,7 +124,7 @@ const WikiHowSection = () => {
                             <li>{t("Saliva in eyes/mouth/nose")}</li>
                             <li>{t("Bat exposure")}</li>
                         </ul>
-                        <div className="mt-auto bg-red-100 text-red-700 text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit border border-red-200">
+                        <div className="mt-auto border-[#8DA750]/30 bg-[#8DA750]/20 text-[#2D5128] text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit borde">
                             {t("Needs Vaccine + RIG")}
                         </div>
                     </div>
@@ -150,33 +157,33 @@ const WikiHowSection = () => {
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">1</span>
                                 <div>
-                                    <strong className="text-[#142C14] block text-base mb-1 font-black">{t("Ensure safety first.")}</strong>
-                                    {t("Move away from the animal. Prevent further injury.")}<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">{t("Rationale: Avoid repeated exposure.")}</span>
+                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Ensure safety first.</strong>
+                                    Move away from the animal. Prevent further injury.<br/>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Avoid repeated exposure.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-[#E4EB9C]/50 flex items-center justify-center font-black text-[#2D5128]">2</span>
+                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#2D5128]">2</span>
                                 <div>
-                                    <strong className="text-[#142C14] block text-base mb-1 font-black">{t("Immediate wound washing (CRITICAL).")}</strong>
-                                    {t("Wash with soap and running water for 15 minutes. If no running water, use any clean water available continuously.")}<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">{t("Rationale: Physically removes virus before it enters nerves. Can reduce infection risk by up to 90%.")}</span>
+                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Immediate wound washing (CRITICAL).</strong>
+                                    Wash with soap and running water for 15 minutes. If no running water, use any clean water available continuously.<br/>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Physically removes virus before it enters nerves. Can reduce infection risk by up to 90%.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">3</span>
                                 <div>
-                                    <strong className="text-[#142C14] block text-base mb-1 font-black">{t("Encourage slight bleeding.")}</strong>
-                                    {t("If minor wound, encourage slight bleeding. Do NOT aggressively squeeze.")}<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">{t("Rationale: Helps flush contaminants.")}</span>
+                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Encourage slight bleeding.</strong>
+                                    If minor wound, encourage slight bleeding. Do NOT aggressively squeeze.<br/>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Helps flush contaminants.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">4</span>
                                 <div>
-                                    <strong className="text-[#142C14] block text-base mb-1 font-black">{t("Apply antiseptic.")}</strong>
-                                    {t("Preferred: Povidone-iodine. Alternatives: alcohol, chlorhexidine.")}<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">{t("Rationale: Inactivates virus locally.")}</span>
+                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Apply alcohol/betadine.</strong>
+                                    Preferred: Povidone-iodine. Alternatives: alcohol, chlorhexidine.<br/>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Inactivates virus locally.</span>
                                 </div>
                             </li>
                         </ul>
@@ -193,8 +200,8 @@ const WikiHowSection = () => {
                                 <li className="flex gap-4">
                                     <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">6</span>
                                     <div>
-                                        <strong className="text-[#142C14] block text-base mb-1 font-black">{t("Go to nearest ABTC ASAP.")}</strong>
-                                        {t("You may receive Anti-rabies vaccine, Rabies Immunoglobulin (RIG) for severe wounds, and Tetanus toxoid.")}
+                                        <strong className="text-[#142C14] block text-base mb-1 font-black">Go to nearest ABTC as soon as possible.</strong>
+                                        You may receive Anti-rabies vaccine, Rabies Immunoglobulin (RIG) for severe wounds, and Tetanus toxoid.
                                     </div>
                                 </li>
                                 <li className="flex gap-4">
@@ -217,7 +224,7 @@ const WikiHowSection = () => {
                                     <li>{t("Burn or cauterize the wound")}</li>
                                     <li>{t("Immediately suture (unless medically necessary)")}</li>
                                 </ul>
-                                <span className="text-red-700/60 font-black text-[10px] block mt-4 uppercase tracking-wider">{t("Rationale: These trap the virus inside.")}</span>
+                                <span className="text-red-700/60 font-black text-[10px] block mt-4 uppercase tracking-wider">Why: These trap the virus inside.</span>
                             </div>
                         </div>
                     </div>
@@ -244,10 +251,10 @@ const WikiHowSection = () => {
                             </div>
                             
                             <ul className="space-y-3 text-sm text-[#142C14]/70 flex-1 font-medium">
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 1:")}</strong> {t("Wash immediately (15 minutes).")}</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 2:")}</strong> {t("Apply antiseptic.")}</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 3:")}</strong> {t("Assess: No bleeding (Cat II) or With bleeding (Cat III).")}</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 4:")}</strong> {t("Seek medical care. Vaccination usually required.")}</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 1:</strong> Wash immediately (15 minutes).</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply alcohol/betadine.</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Assess: No bleeding (Cat II) or With bleeding (Cat III).</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 4:</strong> Seek medical care. Vaccination usually required.</li>
                             </ul>
                             <div className="mt-6 bg-[#E4EB9C]/20 p-4 rounded-xl border border-[#8DA750]/30 text-xs font-bold text-[#2D5128] flex items-start gap-3">
                                 <span>{t("Philippine note: Even \"minor scratches\" are treated cautiously due to high rabies prevalence.")}</span>
@@ -273,9 +280,9 @@ const WikiHowSection = () => {
                             </div>
 
                             <ul className="space-y-3 text-sm text-[#142C14]/70 flex-1 font-medium">
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 1:")}</strong> {t("Flush wound thoroughly (15 minutes).")}</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 2:")}</strong> {t("Apply antiseptic.")}</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">{t("Step 3:")}</strong> {t("Seek urgent care.")}</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 1:</strong> Flush wound thoroughly (15 minutes).</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply alcohol/betadine.</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Seek urgent care.</li>
                             </ul>
                             <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 text-xs font-bold text-red-700 flex items-start gap-3">
                                 <span>{t("Automatically Category III. Requires RIG + vaccine.")}</span>
@@ -338,8 +345,8 @@ const WikiHowSection = () => {
                                     {t("Assume exposure if a bat is found in the room of a sleeping person, child, or mentally impaired individual. Do NOT rely on visible bite marks. Always treated as Category III.")}
                                 </li>
                                 <li className="pt-4 border-t border-slate-100">
-                                    <strong className="text-[#142C14] font-black block mb-2 text-base">{t("Handling Animals with Cuts:")}</strong>
-                                    {t("Wash thoroughly (15 minutes), apply antiseptic, assess wound exposure, and consult healthcare provider.")}
+                                    <strong className="text-[#142C14] font-black block mb-2 text-base">Handling Animals with Cuts:</strong>
+                                    Wash thoroughly (15 minutes), apply alcohol/betadine, assess wound exposure, and consult healthcare provider.
                                 </li>
                             </ul>
                         </div>
@@ -347,6 +354,27 @@ const WikiHowSection = () => {
 
                 </div>
             </div>
+
+            {/* Read More Action Section */}
+            <div className="mt-24 pt-12 border-t border-white/10 flex flex-col items-center text-center">
+                <h3 className="font-heading font-black text-2xl md:text-3xl text-white mb-6">
+                    Need more detailed information?
+                </h3>
+                <a
+                    href="https://doh.gov.ph/rabies-prevention-and-control-program/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center justify-center rounded-2xl bg-[#E4EB9C]/10 backdrop-blur-md border border-[#E4EB9C]/20 text-[#E4EB9C] font-black px-10 py-5 text-sm uppercase tracking-widest hover:bg-[#E4EB9C]/20 transition-all shadow-xl active:scale-[0.98]"
+                >
+                    <BookOpen className="mr-3 h-5 w-5" />
+                    Read Official DOH Guidelines
+                    <ExternalLink className="ml-3 h-4 w-4 opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" />
+                </a>
+                <p className="mt-5 text-xs font-medium text-white/50 tracking-wide">
+                    Links directly to the official Department of Health (DOH) Philippines website.
+                </p>
+            </div>
+
         </div>
     </section>
     );

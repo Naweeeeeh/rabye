@@ -73,7 +73,7 @@ const AIChatBot = () => {
                                 <Bot size={22} className="text-green-400" />
                             </div>
                             <div>
-                                <p className="font-heading font-black text-base leading-none tracking-wide">{t("Ra-Byes! AI")}</p>
+                                <p className="font-heading font-black text-base leading-none tracking-wide">{t("Ra-Byes! Assistant")}</p>
                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{t("Health Navigator")}</p>
                             </div>
                         </div>
