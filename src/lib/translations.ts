@@ -87,7 +87,7 @@ export const translations: Record<string, string> = {
     "Facility Locator": "Pangita og Pasilidad",
     "Find Treatment": "Pangita og Tambalanan",
     "Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.": 
-    "Pangita og ABTC nga duol nimo. Gamita imong lokasyon para dali ra ka makaadto.",
+    "Pangita og ABTC nga duol nimo. Gamita imong lokasyon aron dali ra makapangita ug pinakaduol nimo.",
     "Locate Yourself": "I-set imong Lokasyon",
     "Use My Location": "Gamita Akong Lokasyon",
 
@@ -242,8 +242,8 @@ export const translations: Record<string, string> = {
     "Cover loosely with clean dressing. Avoid tight bandaging.": 
     "Tabuni gamit limpyo nga tela, ayaw higti pag-ayo.",
     
-    "Go to nearest ABTC ASAP.": "Adto dayon sa pinakaduol nga ABTC.",
-    
+    "Go to nearest ABTC as soon as possible.": "Adto dayon sa pinakaduol nga ABTC.",
+    "You may receive Anti-rabies vaccine, Rabies Immunoglobulin (RIG) for severe wounds, and Tetanus toxoid.": "Magpa turok ug anti-rabies vaccine ug anti tetanus.",
     "Observe the animal.": "Obserbahi ang hayop.",
     "Confine and observe for 14 days.": "Bantayi sulod 14 ka adlaw.",
     
@@ -251,6 +251,7 @@ export const translations: Record<string, string> = {
     "Apply traditional remedies (toothpaste, garlic, oil)": "Ayaw butangi og toothpaste, ahos, o lana",
     "Burn or cauterize the wound": "Ayaw pasoi ang samad",
     "Immediately suture (unless medically necessary)": "Ayaw dayon tahia",
+    "Why: These trap the virus inside.": "Mao kini ang magpasamot sa virus",
     
     "Scenario 2: Animal Scratch": "Senaryo 2: Nakawrasan",
     "Wash immediately (15 minutes).": "Hugasi dayon (15 minutos).",

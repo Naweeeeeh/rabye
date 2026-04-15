@@ -25,7 +25,7 @@ const stats = [
 ];
 
 const HeroSection = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     return (
     <section className="bg-white pb-16 md:pb-24 pt-8 overflow-hidden relative">
 
@@ -37,8 +37,8 @@ const HeroSection = () => {
 
                 <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight">
                     <span 
-                        className="font-black tracking-tighter bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent"
-                        style={{ WebkitTextStroke: "1.5px transparent" }} // This forces the browser to thicken the stroke
+                        className={`font-black tracking-tighter bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent ${language === "CEB" ? "text-3xl md:text-4xl lg:text-5xl" : ""}`}
+                        style={{ WebkitTextStroke: "1.2px transparent" }} // This forces the browser to thicken the stroke
                     >
                         {t("Rabies is Fatal.")}
                     </span> 

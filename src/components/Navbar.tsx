@@ -48,15 +48,15 @@ const Navbar = () => {
                     </span>
 
                     {/* Desktop Links */}
-                    <div className="flex items-center gap-6">
+                    <div className={`flex items-center ${language === "CEB" ? "gap-3 lg:gap-4" : "gap-6"}`}>
                         {links.map((l) => (
                             <NavLink
                                 key={l.href}
                                 to={l.href}
                                 className={
                                     l.isCta
-                                        ? "relative flex items-center gap-2 text-[11px] font-black uppercase tracking-wider bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition-all shadow-md shadow-red-200 active:scale-[0.98]"
-                                        : "relative text-sm font-bold text-[#142C14]/70 transition-colors hover:text-[#2D5128]"
+                                        ? `relative flex items-center gap-2 ${language === "CEB" ? "text-[9.5px] px-3" : "text-[11px] px-5"} font-black uppercase tracking-wider bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-all shadow-md shadow-red-200 active:scale-[0.98]`
+                                        : `relative ${language === "CEB" ? "text-[12px] lg:text-[13px]" : "text-sm"} font-bold text-[#142C14]/70 transition-colors hover:text-[#2D5128]`
                                 }
                                 activeClassName={l.isCta ? "" : "text-[#2D5128] border-b-2 border-[#8DA750]"}
                             >
@@ -122,8 +122,8 @@ const Navbar = () => {
                                 onClick={() => setOpen(false)}
                                 className={
                                     l.isCta
-                                        ? "flex items-center justify-center gap-3 w-full mt-4 mb-2 py-3.5 text-sm font-black uppercase tracking-widest bg-red-600 text-white rounded-xl shadow-lg shadow-red-100 active:scale-[0.95]"
-                                        : "block px-4 py-3.5 text-sm font-bold text-[#142C14]/80 hover:text-[#2D5128] hover:bg-[#E4EB9C]/30 rounded-xl transition-all"
+                                        ? `flex items-center justify-center gap-3 w-full mt-4 mb-2 py-3.5 ${language === "CEB" ? "text-xs" : "text-sm"} font-black uppercase tracking-widest bg-red-600 text-white rounded-xl shadow-lg shadow-red-100 active:scale-[0.95]`
+                                        : `block px-4 py-3.5 ${language === "CEB" ? "text-[13px]" : "text-sm"} font-bold text-[#142C14]/80 hover:text-[#2D5128] hover:bg-[#E4EB9C]/30 rounded-xl transition-all`
                                 }
                                 activeClassName={l.isCta ? "" : "text-[#2D5128] bg-[#E4EB9C]/40"}
                             >
