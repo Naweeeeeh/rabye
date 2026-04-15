@@ -7,6 +7,7 @@ import {
     Eye, 
     Link 
 } from "lucide-react";
+import { useLanguage } from "../lib/LanguageContext";
 
 import prev1 from "@/assets/pet-vaccine.png";
 import prev2 from "@/assets/avoid-stray-animals.png";
@@ -115,7 +116,7 @@ const PreventionSection = () => {
                         <div className="px-2 pb-2">
 
                             <h3 className="text-lg font-black text-[#142C14] leading-tight mb-3 transition-colors lg:group-hover:text-[#2D5128]">
-                                {t{item.title}}
+                                {t(item.title)}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium">
                                 {t(item.desc)}

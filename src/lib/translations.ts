@@ -4,10 +4,10 @@ export const translations: Record<string, string> = {
     "The Problem": "Ang Problema",
     "What is Rabies?": "Unsa ang Rabies?",
     "Prevention": "Paglikay",
-    "First Aid": "Unang Tabang",
+    "First Aid": "Pang-Unang Tabang",
     "WikiHow": "Giya",
-    "Get Help": "Mangayo og Tabang",
-    "SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.": "PAHINGABOT SA RABIES, USA KA KAGAT MATAG HIGAYON.",
+    "Get Help": "Asa Magpatambal",
+    "SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.": "SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.",
     "Language": "Pinulongan",
 
     // === Hero Section ===
@@ -15,7 +15,7 @@ export const translations: Record<string, string> = {
     "Your Action Now is the Only Cure.": "Imong lihok karon mao'y makaluwas.",
     "Symptoms don’t show up immediately, but by the time they do, it is 100% too late. If you’ve been bitten or scratched, do not wait. Follow these emergency steps now.": 
     "Dili dayon mugawas ang sintomas, pero kung mugawas na, ulahi na kaayo. Kung napaakan o nakawrasan ka, ayaw paghulat. Sunda dayon kining mga lakang.",
-    "Emergency Bite First Aid": "Unang Tabang kung Napaakan",
+    "Emergency Bite First Aid": "Pang-Unang Tabang kung Napaakan",
     "Find Vaccination Centers": "Pangita og Bakunahan",
     "Local Health Unit Vaccination Drive": "Bakuna Drive sa Lokal nga Health Unit",
     "Deaths annually worldwide": "Kamatayon matag tuig sa kalibutan",
@@ -68,7 +68,7 @@ export const translations: Record<string, string> = {
     "Get Vaccinated": "Magpabakuna",
     "Follow the full PEP (Post-Exposure Prophylaxis) schedule. Missing a single shot can be fatal.": 
     "Sunda ang kumpletong bakuna (PEP). Delikado kung naay makaligtaan.",
-    "First Aid After a Bite": "Unang Tabang Human Mapaakan",
+    "First Aid After a Bite": "Pang-Unang Tabang Human Mapaakan",
     "The first 15 minutes decide the outcome. Follow these medical protocols": 
     "Importante kaayo ang unang 15 minutos. Sunda kining mga lakang:",
     
@@ -85,7 +85,7 @@ export const translations: Record<string, string> = {
     
     // === Get Help Section ===
     "Facility Locator": "Pangita og Pasilidad",
-    "Find Treatment": "Pangita og Tambal",
+    "Find Treatment": "Pangita og Tambalanan",
     "Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.": 
     "Pangita og ABTC nga duol nimo. Gamita imong lokasyon para dali ra ka makaadto.",
     "Locate Yourself": "I-set imong Lokasyon",
@@ -192,10 +192,10 @@ export const translations: Record<string, string> = {
 
     // === WikiHow Section ===
     "Official Reference": "Opisyal nga Giya",
-    "Exposure & First Aid Guidelines": "Giya sa Exposure ug Unang Tabang",
+    "Exposure & First Aid Guidelines": "Giya sa Exposure ug Pang-Unang Tabang",
     "Philippine national classification guidelines and step-by-step responses for different animal exposure scenarios.": 
     "Nasyonal nga giya sa Pilipinas ug mga lakang kung unsay buhaton depende sa exposure sa hayop.",
-    
+    "Treatment Strategies": "Pamaagi sa Pagtambal",
     "Exposure Scenarios (PH Classification)": "Mga Scenario sa Exposure (PH)",
     
     "Category I": "Kategorya I",
@@ -275,6 +275,20 @@ export const translations: Record<string, string> = {
     "If animal remains healthy, it may influence continuation of treatment.": "Kung okay ra ang hayop, pwede maapektuhan ang padayon nga tambal.",
     "Bat Exposure Rule:": "Balaod kung na-expose sa kwaknit:",
     "Scenario 5: Bat Exposure": "Senaryo 5: Exposure sa kwaknit",
+    "ACT NOW: Bite Protocol": "Aksyon: Mga Unang Buhaton",
+    "Symptoms don’t show up immediately, but by the time they do, it is": "Dili dayon manggawas ang mga sintomas, pero inig gawas ana,",
+    "If you’ve been bitten or scratched,": "Kung napaakan o nakawrasan ka,",
+    "DO NOT WAIT": "AYAW NA'G HUWAT",
+    "100% too late": "ulahi na kaayo",
+    "Follow these emergency steps now.": "Sunda dayon ni nga mga emergency steps.", 
+    "Rabies Deaths annually worldwide": "ang mamatay sa rabies kada tuig sa tibuok kalibutan",
+    "Of Rabies victims are children under 15": "sa mga biktima sa rabies kay mga bata ubos sa 15 anyos",
+    "OF RABIES CASES IN HUMANS caused by dog bites": "sa mga kaso sa rabies sa tawo kay gikan sa iro",
+    "Need more detailed information?": "Kailangan pa ug dungang nga impormasyon?",
+    "Why: Avoid repeated exposure.": "Ngano: Para makalikay sa dugang nga pinaakan o exposure.",
+    "Why: Physically removes virus before it enters nerves. Can reduce infection risk by up to 90%.": "Ngano: Para mabanlas ang virus sa dili pa ni makasulod sa mga nerves. Makapagamay ni sa risgo sa impeksyon hangtod sa 90%.",
+    "Why: Helps flush contaminants.": "Ngano: Para mabanlas ang virus sa dili pa ni makasulod sa mga nerves. Makapagamay ni sa risgo sa impeksyon hangtod sa 90%.",
+    "Why: Inactivates virus locally.": " Ngano: Makapatay ni sa virus diha mismo sa samad."
 };
 
 export type Language = "EN" | "CEB";
