@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin, Phone, Crosshair, ArrowRight, HeartPulse } from "lucide-react";
+import { MapPin, Phone, Crosshair, Hospital } from "lucide-react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const biteCenters = [
     { id: 1, name: "ABC Animal Bite Center - Cebu City", address: "B. Rodriguez St, Cebu City, 6000 Cebu", contact: "09054134420", lng: 123.891338, lat: 10.3089952 },
-    { id: 2, name: "Guadalupe-Banawa CEBU Animal Bite Center", address: "8V8P+J57, Cebu City, 6000 Cebu", contact:"", lng: 123.88497, lat: 10.3165395 },
+    { id: 2, name: "Guadalupe-Banawa CEBU Animal Bite Center", address: "8V8P+J57, Cebu City, 6000 Cebu", contact: "", lng: 123.88497, lat: 10.3165395 },
     { id: 3, name: "Rabies Buster / RB ABC (Cebu City)", address: "Rm 203, The River Gate Complex, 18 Gen. Maxilom Ave, Cebu City, 6000", contact: "09054406971", lng: 123.8997473, lat: 10.3117381 },
     { id: 4, name: "ABC Animal Bite Center - Banilad", address: "2010, 2FL, LDM Building, Gov. M. Cuenco Ave, Cebu City, 6000", contact: "09687327917", lng: 123.9126438, lat: 10.3494522 },
     { id: 5, name: "Rabies Buster - Talisay City Branch", address: "Stall No. 6, Krystal Mall, San Isidro Road, Talisay, 6045 Cebu", contact: "09621467448", lng: 123.8390731, lat: 10.2544932 },
+    { id: 6, name: "Cebu City Health Department", address: "8W55+4JW, General Maxilom Ave, Extension, Cebu City, 6000 Cebu", contact: "0322326969", lng: 123.9090935, lat: 10.3078513 }
 ];
 
 const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -90,7 +91,7 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 source: 'route',
                 layout: { 'line-join': 'round', 'line-cap': 'round' },
                 paint: {
-                    'line-color': '#2D5128', // Your custom green
+                    'line-color': '#2D5128',
                     'line-width': 6,
                     'line-opacity': 0.8
                 }
@@ -107,8 +108,8 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 .setHTML(
                     `<div style="padding: 2px; font-family: ui-sans-serif, system-ui, sans-serif;">
                        <h4 style="font-weight: 900; font-size: 14px; margin: 0 0 4px 0; color: #142C14;">${center.name}</h4>
-                       <p style="font-size: 12px; color: #537B2F; margin: 0 0 8px 0; line-height: 1.4;">${center.address}</p>
-                       <p style="font-size: 12px; color: #537B2F; margin: 0 0 8px 0; line-height: 1.4;">Contact: ${center.contact}</p>
+                       <p style="font-size: 12px; color: #537B2F; margin: 0 0 4px 0; line-height: 1.4;">${center.address}</p>
+                       <p style="font-size: 11px; font-weight: 700; color: #8DA750; margin: 0 0 10px 0;">Phone: ${center.contact || 'N/A'}</p>
                        <span style="font-size: 10px; background-color: #E4EB9C; color: #2D5128; padding: 4px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid #8DA750;">Click for directions</span>
                      </div>`
                 );
@@ -130,22 +131,20 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                 popup.remove();
             });
 
-            // Handle marker click (fetches route and shows spinner)
             const onMarkerClick = async (e: Event) => {
                 e.stopPropagation();
                 if (!popup.isOpen()) popup.addTo(map.current!);
 
                 if (currentCoordsRef.current) {
-                    setIsLocating(true); // Triggers the loading spinner so you know it clicked
+                    setIsLocating(true);
                     setLocationError("");
                     await handleFetchRoute(currentCoordsRef.current, [center.lng, center.lat]);
-                    setIsLocating(false); // Stops spinner when route is drawn
+                    setIsLocating(false);
                 } else {
                     setLocationError("Please click 'Use My Location' first to set your starting point.");
                 }
             };
 
-            // Added touchstart for instant mobile responsiveness
             el.addEventListener('click', onMarkerClick);
             el.addEventListener('touchstart', onMarkerClick, { passive: true });
         });
@@ -154,7 +153,6 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
             map.current?.remove();
             map.current = null;
         };
-        // Keeps the map from re-rendering and blinking
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -239,8 +237,25 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
         );
     };
 
+    const handleCenterClick = async (center: typeof biteCenters[0]) => {
+        if (!map.current) return;
+
+        map.current.flyTo({ center: [center.lng, center.lat], zoom: 14, duration: 1500 });
+
+        Object.values(popupsRef.current).forEach(p => p.remove());
+        const popup = popupsRef.current[center.id];
+        if (popup && !popup.isOpen()) popup.addTo(map.current!);
+
+        if (currentCoordsRef.current) {
+            setIsLocating(true);
+            setLocationError("");
+            await handleFetchRoute(currentCoordsRef.current, [center.lng, center.lat]);
+            setIsLocating(false);
+        }
+    };
+
     return (
-        <section id="get-help" className="bg-white pt-10 pb-20 border-t border-slate-100 flex-1 flex flex-col justify-center overflow-hidden">
+        <section id="get-help" className="bg-white pt-10 pb-20 border-t border-slate-100 flex-1 flex flex-col justify-center">
             <div className="container max-w-7xl px-4 md:px-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
 
                 <div className="text-center mb-12">
@@ -255,17 +270,21 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8 w-full">
+                {/* Removed fixed height from grid, using items-start to allow columns to dictate height */}
+                <div className="grid lg:grid-cols-3 gap-8 w-full items-start">
 
-                    <div className="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-[#E4EB9C]">
+                    {/* Explicit Map Height */}
+                    <div className="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-[#E4EB9C] h-[500px] lg:h-[650px]">
                         <style>{`.maplibregl-popup-content { border-radius: 1rem !important; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important; padding: 16px !important; border: 1px solid #f1f5f9 !important; }`}</style>
-                        <div ref={mapContainer} className="w-full h-[500px] lg:h-[600px]" />
+                        <div ref={mapContainer} className="w-full h-full" />
                     </div>
 
-                    <div className="flex flex-col justify-start space-y-6 lg:col-span-1">
+                    {/* Explicit Right Column Height matching the map */}
+                    <div className="flex flex-col gap-6 lg:col-span-1 h-auto lg:h-[650px]">
 
-                        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-[#8DA750]/10 border border-slate-100 transition-all hover:border-[#8DA750]/50">
-                            <div className="flex items-center gap-3 mb-6">
+                        {/* Top Card: Locate Yourself (Shrinks to fit content) */}
+                        <div className="bg-white rounded-3xl p-6 shadow-xl shadow-[#8DA750]/10 border border-slate-100 transition-all hover:border-[#8DA750]/50 shrink-0">
+                            <div className="flex items-center gap-3 mb-5">
                                 <div className="p-2.5 rounded-xl bg-[#E4EB9C]/20 border border-[#8DA750]/20">
                                     <Crosshair size={20} className="text-[#2D5128]" />
                                 </div>
@@ -279,12 +298,12 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                             <button
                                 onClick={handleFindNearest}
                                 disabled={isLocating}
-                                className="w-full h-14 inline-flex items-center justify-center rounded-xl bg-[#142C14] text-[#E4EB9C] font-bold px-6 text-sm hover:bg-[#2D5128] transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="w-full h-14 inline-flex items-center justify-center rounded-2xl bg-[#2D5128] text-[#E4EB9C] font-black px-6 text-sm uppercase tracking-widest hover:bg-[#142C14] transition-all shadow-xl shadow-[#142C14]/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isLocating ? (
                                     <span className="flex items-center gap-2">
-                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                        Calculating Route...
+                                        <div className="w-4 h-4 border-2 border-[#E4EB9C]/30 border-t-[#E4EB9C] rounded-full animate-spin" />
+                                        Calculating...
                                     </span>
                                 ) : (
                                     "Use My Location"
@@ -297,29 +316,43 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                             )}
                         </div>
 
-                        <div className="bg-[#2D5128] rounded-3xl p-8 border border-[#142C14] shadow-2xl shadow-[#2D5128]/20 relative overflow-hidden">
-                            <HeartPulse className="absolute -bottom-4 -right-4 text-[#E4EB9C] opacity-10" size={160} />
-
-                            <div className="flex items-center gap-2 mb-6">
-                                <span className="flex h-2 w-2 rounded-full bg-[#E4EB9C] animate-pulse"></span>
-                                <span className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-widest">DOH Hotline</span>
+                        {/* Bottom Card: Scrollable ABTC List (Takes up exact remaining space) */}
+                        <div className="bg-white rounded-3xl shadow-xl shadow-[#8DA750]/10 border border-slate-100 flex flex-col flex-1 min-h-[350px] lg:min-h-0 overflow-hidden">
+                            {/* Fixed Header */}
+                            <div className="p-6 border-b border-slate-100 bg-[#E4EB9C]/10 shrink-0">
+                                <h3 className="font-heading font-black text-lg text-slate-900 flex items-center gap-2">
+                                    <Hospital className="text-[#2D5128]" size={20} />
+                                    Treatment Centers
+                                </h3>
+                                <p className="text-xs text-slate-500 mt-1 font-medium">Select a facility to view on map</p>
                             </div>
 
-                            <h3 className="font-heading font-black text-2xl text-white mb-2">Emergency</h3>
-                            <p className="text-[#E4EB9C]/80 text-sm mb-6 leading-relaxed">
-                                Need immediate medical guidance? Call the health department directly.
-                            </p>
-
-                            <a
-                                href="tel:0286517800"
-                                className="group w-full h-14 inline-flex items-center justify-between px-5 rounded-xl bg-[#142C14] text-white transition-all hover:bg-[#E4EB9C] hover:text-[#142C14] shadow-lg shadow-[#142C14]/50 active:scale-[0.98]"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <Phone size={20} className="group-hover:rotate-12 transition-transform" />
-                                    <span className="text-lg font-black tracking-tight">(02) 8651-7800</span>
-                                </div>
-                                <ArrowRight size={18} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-                            </a>
+                            {/* Scrollable Content locked inside the parent container */}
+                            <div className="flex-1 overflow-y-auto no-scrollbar p-2 pb-6">
+                                {biteCenters.map((center) => (
+                                    <button
+                                        key={center.id}
+                                        onClick={() => handleCenterClick(center)}
+                                        className="w-full text-left p-4 hover:bg-[#E4EB9C]/20 rounded-2xl border-b border-slate-50 last:border-0 transition-all group"
+                                    >
+                                        <h4 className="font-bold text-[#142C14] group-hover:text-[#2D5128] text-sm mb-1 transition-colors">
+                                            {center.name}
+                                        </h4>
+                                        <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                                            {center.address}
+                                        </p>
+                                        {center.contact ? (
+                                            <div className="flex items-center gap-1.5 mt-2 text-xs font-bold text-[#537B2F]">
+                                                <Phone size={12} /> {center.contact}
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-1.5 mt-2 text-xs font-bold text-slate-400">
+                                                <Phone size={12} /> No contact available
+                                            </div>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
                     </div>
