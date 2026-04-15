@@ -14,6 +14,7 @@ import WikiHowSection from "./components/WikiHowSection"; // New Import
 import PreventionSection from "./components/PreventionSection";
 import GetHelpSection from "./components/GetHelpSection";
 import NotFound from "./pages/NotFound";
+import { LanguageProvider } from "./lib/LanguageContext";
 
 const queryClient = new QueryClient();
 
@@ -25,23 +26,25 @@ const App = () => {
             <TooltipProvider>
                 <Toaster />
                 <Sonner />
-                <BrowserRouter>
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route path="/" element={<HeroSection />} />
-                            <Route path="/problem" element={<ProblemSection />} />
-                            <Route path="/what-is-rabies" element={<WhatIsRabiesSection />} />
-                            <Route path="/first-aid" element={<FirstAidSection />} />
-                            <Route path="/wikihow" element={<WikiHowSection />} /> {/* New Route */}
-                            <Route path="/prevention" element={<PreventionSection />} />
-                            <Route
-                                path="/get-help"
-                                element={<GetHelpSection onLocationFound={(c) => setCoords(c)} />}
-                            />
-                            <Route path="*" element={<NotFound />} />
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
+                <LanguageProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route element={<Layout />}>
+                                <Route path="/" element={<HeroSection />} />
+                                <Route path="/problem" element={<ProblemSection />} />
+                                <Route path="/what-is-rabies" element={<WhatIsRabiesSection />} />
+                                <Route path="/first-aid" element={<FirstAidSection />} />
+                                <Route path="/wikihow" element={<WikiHowSection />} /> {/* New Route */}
+                                <Route path="/prevention" element={<PreventionSection />} />
+                                <Route
+                                    path="/get-help"
+                                    element={<GetHelpSection onLocationFound={(c) => setCoords(c)} />}
+                                />
+                                <Route path="*" element={<NotFound />} />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </LanguageProvider>
             </TooltipProvider>
         </QueryClientProvider>
     );

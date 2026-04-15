@@ -1,6 +1,7 @@
 import heroImg from "@/assets/heroimg.png";
 import { ShieldCheck, Users, Dog, ArrowRight, ExternalLink } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useLanguage } from "../lib/LanguageContext";
 
 const stats = [
     {
@@ -23,7 +24,9 @@ const stats = [
     },
 ];
 
-const HeroSection = () => (
+const HeroSection = () => {
+    const { t } = useLanguage();
+    return (
     <section className="bg-white pb-16 md:pb-24 pt-8 overflow-hidden relative">
 
         <div className="container px-4">
@@ -33,13 +36,13 @@ const HeroSection = () => (
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 py-4">
 
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-                        Rabies is <span className="text-[#2D5128]">Fatal</span>. <br/>
-                        Your Action Now is the Only Cure.
+                        {t("Rabies is Fatal.")} <br/>
+                        {t("Your Action Now is the Only Cure.")}
                     </h1>
 
 
                     <p className="text-muted-foreground text-lg max-w-lg leading-relaxed">
-                        Symptoms don’t show up immediately, but by the time they do, it is <strong>100% too late</strong>. If you’ve been bitten or scratched, do not wait. Follow these emergency steps now.
+                        {t("Symptoms don’t show up immediately, but by the time they do, it is 100% too late. If you’ve been bitten or scratched, do not wait. Follow these emergency steps now.")}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -52,7 +55,7 @@ const HeroSection = () => (
                                 <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-white bg-red-500 shadow-sm"></span>
                             </span>
 
-                            Emergency Bite First Aid
+                            {t("Emergency Bite First Aid")}
                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </NavLink>
 
@@ -60,7 +63,7 @@ const HeroSection = () => (
                             to="/get-help"
                             className="w-full sm:w-[280px] h-14 inline-flex items-center justify-center rounded-xl border-2 border-[#2D5128] text-[#2D5128] font-bold transition-all hover:bg-[#E4EB9C]/30 hover:border-[#142C14] hover:text-[#142C14] active:scale-[0.98]"
                         >
-                            Find Vaccination Centers
+                            {t("Find Vaccination Centers")}
                         </NavLink>
                     </div>
                 </div>
@@ -75,7 +78,7 @@ const HeroSection = () => (
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     <div className="absolute bottom-6 left-6 text-white text-sm font-medium bg-[#142C14]/40 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
-                        Local Health Unit Vaccination Drive
+                        {t("Local Health Unit Vaccination Drive")}
                     </div>
                 </div>
 
@@ -103,7 +106,7 @@ const HeroSection = () => (
                                     {s.value}
                                 </p>
                                 <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest pr-6 leading-snug">
-                                    {s.label}
+                                    {t(s.label)}
                                 </p>
                             </div>
 
@@ -117,6 +120,7 @@ const HeroSection = () => (
             </div>
         </div>
     </section>
-);
+    );
+};
 
 export default HeroSection;

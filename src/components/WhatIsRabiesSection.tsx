@@ -1,4 +1,5 @@
 import { Bug, Dog, Brain, ArrowUpRight, PlayCircle } from "lucide-react";
+import { useLanguage } from "../lib/LanguageContext";
 
 import step1 from "@/assets/dog.jpg";
 import step2 from "@/assets/virus.png";
@@ -26,7 +27,9 @@ const steps = [
     },
 ];
 
-const WhatIsRabiesSection = () => (
+const WhatIsRabiesSection = () => {
+    const { t } = useLanguage();
+    return (
     <section 
         id="what-is-rabies" 
         className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
@@ -39,13 +42,13 @@ const WhatIsRabiesSection = () => (
 
             <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4EB9C]/10 text-[#E4EB9C] text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-[#E4EB9C]/20">
-                    Viral Transmission
+                    {t("Viral Transmission")}
                 </div>
                 <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
-                    What is Rabies?
+                    {t("What is Rabies?")}
                 </h2>
                 <p className="text-[#E4EB9C]/80 max-w-2xl mx-auto mt-6 text-lg leading-relaxed font-medium">
-                    Rabies is a preventable yet deadly viral disease. Once it enters the nervous system, it becomes 100% fatal.
+                    {t("Rabies is a preventable yet deadly viral disease. Once it enters the nervous system, it becomes 100% fatal.")}
                 </p>
             </div>
 
@@ -80,10 +83,10 @@ const WhatIsRabiesSection = () => (
                         {/* Text Content */}
                         <div className="px-3 pb-2 flex-1 flex flex-col">
                             <h3 className="font-heading font-black text-[#142C14] text-xl mb-3 leading-tight group-hover:text-[#2D5128] transition-colors">
-                                {s.title}
+                                {t(s.title)}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium">
-                                {s.desc}
+                                {t(s.desc)}
                             </p>
                         </div>
                     </a>
@@ -111,17 +114,17 @@ const WhatIsRabiesSection = () => (
                         <div className="flex flex-col gap-6">
                             <div className="flex items-center gap-3 text-[#E4EB9C]">
                                 <PlayCircle size={20} className="animate-pulse" />
-                                <span className="text-[10px] font-black uppercase tracking-[0.2em]">Official WHO Briefing</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em]">{t("Official WHO Briefing")}</span>
                             </div>
                             
                             <h4 className="text-white font-heading font-black text-2xl leading-tight">
-                                Understanding the Viral Clock
+                                {t("Understanding the Viral Clock")}
                             </h4>
                             
                             <div className="bg-red-600/10 border border-red-500/20 rounded-2xl p-5">
                                 <p className="text-white text-sm leading-relaxed">
-                                    <span className="text-red-500 font-black mr-2 uppercase tracking-tighter">Critical Alert:</span>
-                                    Treatment must begin immediately after a bite. Once physical symptoms appear, it is 100% too late for medical intervention.
+                                    <span className="text-red-500 font-black mr-2 uppercase tracking-tighter">{t("Critical Alert:")}</span>
+                                    {t("Treatment must begin immediately after a bite. Once physical symptoms appear, it is 100% too late for medical intervention.")}
                                 </p>
                             </div>
                         </div>
@@ -132,12 +135,13 @@ const WhatIsRabiesSection = () => (
             {/* Section Footer */}
             <div className="mt-20 pt-8 border-t border-[#8DA750]/20 text-center">
                 <p className="text-[10px] font-black text-[#E4EB9C]/50 uppercase tracking-[0.3em]">
-                    Pathology Data • World Health Organization (WHO)
+                    {t("Pathology Data • World Health Organization (WHO)")}
                 </p>
             </div>
 
         </div>
     </section>
-);
+    );
+};
 
 export default WhatIsRabiesSection;

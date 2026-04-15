@@ -1,4 +1,5 @@
 import { Check, ShieldCheck } from "lucide-react";
+import { useLanguage } from "../lib/LanguageContext";
 
 import prev1 from "@/assets/pet-vaccine.png";
 import prev2 from "@/assets/avoid-stray-animals.png";
@@ -41,7 +42,9 @@ const items = [
     },
 ];
 
-const PreventionSection = () => (
+const PreventionSection = () => {
+    const { t } = useLanguage();
+    return (
     <section 
         id="prevention" 
         className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
@@ -55,13 +58,13 @@ const PreventionSection = () => (
             {/* Section Header */}
             <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4EB9C]/10 text-[#E4EB9C] text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-[#E4EB9C]/20">
-                    Safety Protocol
+                    {t("Safety Protocol")}
                 </div>
                 <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
-                    Prevention is Key
+                    {t("Prevention is Key")}
                 </h2>
                 <p className="text-[#E4EB9C]/80 max-w-2xl mx-auto mt-6 text-lg leading-relaxed font-medium">
-                    Simple habits can protect you, your family, and your community from the threat of rabies.
+                    {t("Simple habits can protect you, your family, and your community from the threat of rabies.")}
                 </p>
             </div>
 
@@ -91,10 +94,10 @@ const PreventionSection = () => (
                         {/* Text Content */}
                         <div className="px-2 pb-2">
                             <h3 className="text-lg font-black text-[#142C14] leading-tight mb-3">
-                                {item.title}
+                                {t(item.title)}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium">
-                                {item.desc}
+                                {t(item.desc)}
                             </p>
                         </div>
                     </div>
@@ -106,13 +109,14 @@ const PreventionSection = () => (
                 <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-[#142C14]/40 backdrop-blur-md border border-[#8DA750]/30 shadow-xl">
                     <ShieldCheck className="text-[#E4EB9C]" size={20} />
                     <p className="text-xs font-black text-white uppercase tracking-[0.2em]">
-                        Be a Responsible Pet Owner • Save Lives
+                        {t("Be a Responsible Pet Owner • Save Lives")}
                     </p>
                 </div>
             </div>
 
         </div>
     </section>
-);
+    );
+};
 
 export default PreventionSection;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { NavLink } from "./NavLink";
+import { useLanguage } from "../lib/LanguageContext";
 
 // Logically ordered user journey
 const links = [
@@ -16,6 +17,7 @@ const links = [
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
+    const { language, toggleLanguage, t } = useLanguage();
 
     return (
         <nav className="sticky top-0 z-50 bg-white border-b border-[#8DA750]/20 shadow-sm flex flex-col transition-all">
@@ -31,7 +33,9 @@ const Navbar = () => {
                         className="h-8 md:h-9 w-auto" /* Scaled down slightly */
                     />
                     <span className="font-heading font-black text-xl md:text-2xl text-[#2d5128] tracking-tight">
+                    <span className="font-heading font-black text-xl md:text-2xl text-[#2d5128] tracking-tight">
                         Ra-Byes!
+                    </span>
                     </span>
                 </NavLink>
 
@@ -40,7 +44,7 @@ const Navbar = () => {
                     
                     {/* Fancy Tagline - Scaled text size slightly to save vertical space */}
                     <span className="font-heading font-black text-lg bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent tracking-tight">
-                        SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.
+                        {t("SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.")}
                     </span>
 
                     {/* Desktop Links */}
@@ -62,9 +66,26 @@ const Navbar = () => {
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                                     </span>
                                 )}
-                                {l.label}
+                                {t(l.label)}
                             </NavLink>
                         ))}
+                        
+                        {/* Language Toggle Switch */}
+                        <div className="flex items-center gap-2 ml-2">
+                            <span className={`text-xs font-bold transition-colors ${language === "EN" ? "text-[#2D5128]" : "text-[#142C14]/40"}`}>EN</span>
+                            <button
+                                onClick={toggleLanguage}
+                                className="relative inline-flex h-6 w-12 items-center rounded-full bg-[#E4EB9C]/40 border-2 border-[#8DA750]/30 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8DA750] focus:ring-offset-2"
+                                aria-label="Toggle language"
+                            >
+                                <span
+                                    className={`inline-block h-4 w-4 transform rounded-full bg-[#2D5128] transition-transform duration-300 ease-in-out ${
+                                        language === "CEB" ? "translate-x-6" : "translate-x-1"
+                                    }`}
+                                />
+                            </button>
+                            <span className={`text-xs font-bold transition-colors ${language === "CEB" ? "text-[#2D5128]" : "text-[#142C14]/40"}`}>CEB</span>
+                        </div>
                     </div>
                 </div>
 
@@ -86,7 +107,7 @@ const Navbar = () => {
             {/* Mobile Tagline - Thinner padding */}
             <div className="lg:hidden w-full text-center py-1.5 bg-gradient-to-r from-white via-[#E4EB9C]/30 to-white border-t border-[#8DA750]/10 shadow-inner">
                 <span className="font-heading font-black text-xs text-[#2D5128] tracking-wide">
-                    SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.
+                    {t("SAYING GOODBYE TO RABIES, ONE BITE AT A TIME.")}
                 </span>
             </div>
 
@@ -106,9 +127,28 @@ const Navbar = () => {
                                 }
                                 activeClassName={l.isCta ? "" : "text-[#2D5128] bg-[#E4EB9C]/40"}
                             >
-                                {l.label}
+                                {t(l.label)}
                             </NavLink>
                         ))}
+
+                        {/* Mobile Language Toggle */}
+                        <div className="flex items-center justify-between px-4 py-4 mt-2 border-t border-[#8DA750]/20">
+                            <span className="text-sm font-bold text-[#142C14]/80">Language</span>
+                            <div className="flex items-center gap-3">
+                                <span className={`text-xs font-bold transition-colors ${language === "EN" ? "text-[#2D5128]" : "text-[#142C14]/40"}`}>EN</span>
+                                <button
+                                    onClick={toggleLanguage}
+                                    className="relative inline-flex h-7 w-14 items-center rounded-full bg-[#E4EB9C]/40 border-2 border-[#8DA750]/30 transition-colors focus:outline-none"
+                                >
+                                    <span
+                                        className={`inline-block h-5 w-5 transform rounded-full bg-[#2D5128] transition-transform duration-300 ease-in-out ${
+                                            language === "CEB" ? "translate-x-7" : "translate-x-1"
+                                        }`}
+                                    />
+                                </button>
+                                <span className={`text-xs font-bold transition-colors ${language === "CEB" ? "text-[#2D5128]" : "text-[#142C14]/40"}`}>CEB</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

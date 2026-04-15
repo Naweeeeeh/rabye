@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MapPin, Phone, Crosshair, ArrowRight, HeartPulse } from "lucide-react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { useLanguage } from "../lib/LanguageContext";
 
 const biteCenters = [
     { id: 1, name: "ABC Animal Bite Center - Cebu City", address: "B. Rodriguez St, Cebu City, 6000 Cebu", contact: "09054134420", lng: 123.891338, lat: 10.3089952 },
@@ -27,6 +28,7 @@ interface GetHelpProps {
 }
 
 const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
+    const { t } = useLanguage();
     const mapContainer = useRef<HTMLDivElement>(null);
     const map = useRef<maplibregl.Map | null>(null);
     const userMarkerRef = useRef<maplibregl.Marker | null>(null);
@@ -245,13 +247,13 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
 
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E4EB9C]/40 text-[#2D5128] text-[10px] font-black uppercase tracking-[0.2em] mb-4">
-                        Facility Locator
+                        {t("Facility Locator")}
                     </div>
                     <h2 className="font-heading text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
-                        <MapPin className="text-[#2D5128]" size={32} /> Find Treatment
+                        <MapPin className="text-[#2D5128]" size={32} /> {t("Find Treatment")}
                     </h2>
                     <p className="text-slate-500 max-w-2xl mx-auto mt-4 text-lg leading-relaxed">
-                        Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.
+                        {t("Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.")}
                     </p>
                 </div>
 
@@ -269,11 +271,11 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                                 <div className="p-2.5 rounded-xl bg-[#E4EB9C]/20 border border-[#8DA750]/20">
                                     <Crosshair size={20} className="text-[#2D5128]" />
                                 </div>
-                                <h3 className="font-heading font-black text-xl text-slate-900">Locate Yourself</h3>
+                                <h3 className="font-heading font-black text-xl text-slate-900">{t("Locate Yourself")}</h3>
                             </div>
 
                             <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                                Allow location access to automatically find the fastest route to the nearest clinic.
+                                {t("Allow location access to automatically find the fastest route to the nearest clinic.")}
                             </p>
 
                             <button
@@ -284,10 +286,10 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                                 {isLocating ? (
                                     <span className="flex items-center gap-2">
                                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                        Calculating Route...
+                                        {t("Calculating Route...")}
                                     </span>
                                 ) : (
-                                    "Use My Location"
+                                    t("Use My Location")
                                 )}
                             </button>
                             {locationError && (
@@ -302,12 +304,12 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
 
                             <div className="flex items-center gap-2 mb-6">
                                 <span className="flex h-2 w-2 rounded-full bg-[#E4EB9C] animate-pulse"></span>
-                                <span className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-widest">DOH Hotline</span>
+                                <span className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-widest">{t("DOH Hotline")}</span>
                             </div>
 
-                            <h3 className="font-heading font-black text-2xl text-white mb-2">Emergency</h3>
+                            <h3 className="font-heading font-black text-2xl text-white mb-2">{t("Emergency")}</h3>
                             <p className="text-[#E4EB9C]/80 text-sm mb-6 leading-relaxed">
-                                Need immediate medical guidance? Call the health department directly.
+                                {t("Need immediate medical guidance? Call the health department directly.")}
                             </p>
 
                             <a
