@@ -35,7 +35,7 @@ const WikiHowSection = () => (
                     Official Reference
                 </div>
                 <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight mb-4">
-                    Exposure & First Aid Guidelines
+                    QikiHow: Exposure & First Aid Guidelines
                 </h2>
                 <p className="text-center text-[#E4EB9C]/80 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
                     Philippine national classification guidelines and step-by-step responses for different animal exposure scenarios.
