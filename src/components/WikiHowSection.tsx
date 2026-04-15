@@ -1,4 +1,12 @@
-import { CheckCircle2, AlertTriangle, AlertOctagon, Info, ShieldAlert } from "lucide-react";
+import { 
+    CheckCircle2, 
+    AlertTriangle, 
+    AlertOctagon, 
+    Info, 
+    ShieldAlert,
+    BookOpen,
+    ExternalLink
+} from "lucide-react";
 
 import category1 from "/public/category1.jpg";
 import category2 from "/public/category2.jpg";
@@ -36,8 +44,7 @@ const WikiHowSection = () => (
 
             {/* Part 1: Classification */}
             <h3 className="font-heading font-black text-2xl mb-8 text-white flex items-center gap-3 border-b border-white/10 pb-4">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#E4EB9C]/20 text-[#E4EB9C] text-sm">1</span>
-                Exposure Scenarios (PH Classification)
+                Exposure Categories (PH Classification)
             </h3>
 
             <div className="grid md:grid-cols-3 gap-8 mb-24">
@@ -85,7 +92,7 @@ const WikiHowSection = () => (
                             <li><strong className="text-[#142C14] font-black">Nibbling of uncovered skin</strong></li>
                             <li>Minor scratches (no bleeding)</li>
                         </ul>
-                        <div className="mt-auto bg-orange-100 text-orange-700 text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit border border-orange-200">
+                        <div className="mt-auto border-[#8DA750]/30 bg-[#8DA750]/20 text-[#2D5128] text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit borde">
                             Needs Vaccine
                         </div>
                     </div>
@@ -112,7 +119,7 @@ const WikiHowSection = () => (
                             <li>Saliva in <strong className="text-[#142C14] font-black">eyes/mouth/nose</strong></li>
                             <li>Bat exposure</li>
                         </ul>
-                        <div className="mt-auto bg-red-100 text-red-700 text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit border border-red-200">
+                        <div className="mt-auto border-[#8DA750]/30 bg-[#8DA750]/20 text-[#2D5128] text-[10px] font-black uppercase tracking-wider px-4 py-3 rounded-xl w-fit borde">
                             Needs Vaccine + RIG
                         </div>
                     </div>
@@ -121,7 +128,6 @@ const WikiHowSection = () => (
 
             {/* Part 2: Step-by-Step */}
             <h3 className="font-heading font-black text-2xl mb-8 text-white flex items-center gap-3 border-b border-white/10 pb-4">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#E4EB9C]/20 text-[#E4EB9C] text-sm">2</span>
                 Step-by-Step Scenarios
             </h3>
 
@@ -147,15 +153,15 @@ const WikiHowSection = () => (
                                 <div>
                                     <strong className="text-[#142C14] block text-base mb-1 font-black">Ensure safety first.</strong>
                                     Move away from the animal. Prevent further injury.<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Rationale: Avoid repeated exposure.</span>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Avoid repeated exposure.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-[#E4EB9C]/50 flex items-center justify-center font-black text-[#2D5128]">2</span>
+                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#2D5128]">2</span>
                                 <div>
                                     <strong className="text-[#142C14] block text-base mb-1 font-black">Immediate wound washing (CRITICAL).</strong>
                                     Wash with soap and running water for 15 minutes. If no running water, use any clean water available continuously.<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Rationale: Physically removes virus before it enters nerves. Can reduce infection risk by up to 90%.</span>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Physically removes virus before it enters nerves. Can reduce infection risk by up to 90%.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
@@ -163,15 +169,15 @@ const WikiHowSection = () => (
                                 <div>
                                     <strong className="text-[#142C14] block text-base mb-1 font-black">Encourage slight bleeding.</strong>
                                     If minor wound, encourage slight bleeding. Do NOT aggressively squeeze.<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Rationale: Helps flush contaminants.</span>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Helps flush contaminants.</span>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">4</span>
                                 <div>
-                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Apply antiseptic.</strong>
+                                    <strong className="text-[#142C14] block text-base mb-1 font-black">Apply alcohol/betadine.</strong>
                                     Preferred: Povidone-iodine. Alternatives: alcohol, chlorhexidine.<br/>
-                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Rationale: Inactivates virus locally.</span>
+                                    <span className="text-[#8DA750] block mt-2 font-bold italic">Why: Inactivates virus locally.</span>
                                 </div>
                             </li>
                         </ul>
@@ -188,7 +194,7 @@ const WikiHowSection = () => (
                                 <li className="flex gap-4">
                                     <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-black text-[#142C14]/50">6</span>
                                     <div>
-                                        <strong className="text-[#142C14] block text-base mb-1 font-black">Go to nearest ABTC ASAP.</strong>
+                                        <strong className="text-[#142C14] block text-base mb-1 font-black">Go to nearest ABTC as soon as possible.</strong>
                                         You may receive Anti-rabies vaccine, Rabies Immunoglobulin (RIG) for severe wounds, and Tetanus toxoid.
                                     </div>
                                 </li>
@@ -212,7 +218,7 @@ const WikiHowSection = () => (
                                     <li>Burn or cauterize the wound</li>
                                     <li>Immediately suture (unless medically necessary)</li>
                                 </ul>
-                                <span className="text-red-700/60 font-black text-[10px] block mt-4 uppercase tracking-wider">Rationale: These trap the virus inside.</span>
+                                <span className="text-red-700/60 font-black text-[10px] block mt-4 uppercase tracking-wider">Why: These trap the virus inside.</span>
                             </div>
                         </div>
                     </div>
@@ -240,7 +246,7 @@ const WikiHowSection = () => (
                             
                             <ul className="space-y-3 text-sm text-[#142C14]/70 flex-1 font-medium">
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 1:</strong> Wash immediately (15 minutes).</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply antiseptic.</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply alcohol/betadine.</li>
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Assess: No bleeding (Cat II) or With bleeding (Cat III).</li>
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 4:</strong> Seek medical care. Vaccination usually required.</li>
                             </ul>
@@ -269,7 +275,7 @@ const WikiHowSection = () => (
 
                             <ul className="space-y-3 text-sm text-[#142C14]/70 flex-1 font-medium">
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 1:</strong> Flush wound thoroughly (15 minutes).</li>
-                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply antiseptic.</li>
+                                <li><strong className="text-[#142C14] font-black mr-2">Step 2:</strong> Apply alcohol/betadine.</li>
                                 <li><strong className="text-[#142C14] font-black mr-2">Step 3:</strong> Seek urgent care.</li>
                             </ul>
                             <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 text-xs font-bold text-red-700 flex items-start gap-3">
@@ -334,7 +340,7 @@ const WikiHowSection = () => (
                                 </li>
                                 <li className="pt-4 border-t border-slate-100">
                                     <strong className="text-[#142C14] font-black block mb-2 text-base">Handling Animals with Cuts:</strong>
-                                    Wash thoroughly (15 minutes), apply antiseptic, assess wound exposure, and consult healthcare provider.
+                                    Wash thoroughly (15 minutes), apply alcohol/betadine, assess wound exposure, and consult healthcare provider.
                                 </li>
                             </ul>
                         </div>
@@ -342,6 +348,27 @@ const WikiHowSection = () => (
 
                 </div>
             </div>
+
+            {/* Read More Action Section */}
+            <div className="mt-24 pt-12 border-t border-white/10 flex flex-col items-center text-center">
+                <h3 className="font-heading font-black text-2xl md:text-3xl text-white mb-6">
+                    Need more detailed information?
+                </h3>
+                <a
+                    href="https://doh.gov.ph/rabies-prevention-and-control-program/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center justify-center rounded-2xl bg-[#E4EB9C]/10 backdrop-blur-md border border-[#E4EB9C]/20 text-[#E4EB9C] font-black px-10 py-5 text-sm uppercase tracking-widest hover:bg-[#E4EB9C]/20 transition-all shadow-xl active:scale-[0.98]"
+                >
+                    <BookOpen className="mr-3 h-5 w-5" />
+                    Read Official DOH Guidelines
+                    <ExternalLink className="ml-3 h-4 w-4 opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" />
+                </a>
+                <p className="mt-5 text-xs font-medium text-white/50 tracking-wide">
+                    Links directly to the official Department of Health (DOH) Philippines website.
+                </p>
+            </div>
+
         </div>
     </section>
 );

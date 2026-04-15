@@ -1,4 +1,12 @@
-import { Check, ShieldCheck } from "lucide-react";
+import { 
+    ShieldCheck, 
+    Syringe, 
+    ShieldAlert, 
+    HeartHandshake, 
+    PhoneCall, 
+    Eye, 
+    Link 
+} from "lucide-react";
 
 import prev1 from "@/assets/pet-vaccine.png";
 import prev2 from "@/assets/avoid-stray-animals.png";
@@ -8,36 +16,43 @@ import prev5 from "@/assets/supervise-children.png";
 import prev6 from "@/assets/pet-on-leash.png";
 
 import texture from "../assets/texture2.png";
+
 const items = [
     { 
         title: "Vaccinate your pets regularly", 
         desc: "Ensure your pets receive annual anti-rabies shots. It's the most effective defense for your furry friends and your home.",
-        image: prev1 
+        image: prev1,
+        icon: Syringe
     },
     { 
         title: "Avoid approaching stray animals", 
         desc: "Keep a safe distance from unknown animals, as they may be unvaccinated or exhibiting unpredictable, defensive behavior.",
-        image: prev2 
+        image: prev2,
+        icon: ShieldAlert
     },
     { 
         title: "Teach children respect for animals", 
         desc: "Educate kids to never disturb animals while they are eating, sleeping, or nursing to prevent accidental defensive bites.",
-        image: prev3 
+        image: prev3,
+        icon: HeartHandshake
     },
     { 
         title: "Report stray animal sightings", 
         desc: "Help your community by reporting roaming strays to your local barangay or city veterinarian for proper management.",
-        image: prev4 
+        image: prev4,
+        icon: PhoneCall
     },
     { 
         title: "Supervise children around pets", 
         desc: "Never leave young children unattended with animals, even familiar household pets, to ensure safety for both child and pet.",
-        image: prev5 
+        image: prev5,
+        icon: Eye
     },
     { 
         title: "Keep your pets leashed in public", 
         desc: "Maintain control of your pet's movements in shared spaces to avoid unexpected and stressful encounters with strangers.",
-        image: prev6 
+        image: prev6,
+        icon: Link
     },
 ];
 
@@ -70,27 +85,33 @@ const PreventionSection = () => (
                 {items.map((item) => (
                     <div
                         key={item.title}
-                        className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50"
+                        // Hover interactions restricted to lg (desktop) to prevent sticky mobile states
+                        className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-xl transition-all duration-300 lg:hover:-translate-y-2 lg:hover:shadow-2xl"
                     >
-                        {/* Image Container - Full Color */}
-                        <div className="relative w-full h-44 mb-10 rounded-[1.8rem] overflow-hidden bg-slate-50 border border-slate-100 p-4">
-                            <img 
-                                src={item.image} 
-                                alt={item.title} 
-                                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" 
-                            />
+                        {/* Image Container */}
+                        <div className="relative w-full h-44 mb-10">
+                            <div className="w-full h-full rounded-[1.8rem] bg-slate-50 border border-slate-100 p-2">
+                                <div className="w-full h-full rounded-[1.2rem] overflow-hidden">
+                                    {/* Changed to w-full h-full object-cover object-center to stretch and fill */}
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.title} 
+                                        className="w-full h-full object-cover object-center transition-transform duration-700 lg:group-hover:scale-105" 
+                                    />
+                                </div>
+                            </div>
                             
-                            {/* Overlapping Check Badge */}
-                            <div className="absolute -bottom-2 -left-2 w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg border-[6px] border-white z-10 group-hover:-translate-y-1 transition-transform duration-300">
-                                <div className="w-full h-full bg-[#E4EB9C]/40 rounded-xl flex items-center justify-center text-[#2D5128] transition-colors group-hover:bg-[#2D5128] group-hover:text-[#E4EB9C]">
-                                    <Check size={22} strokeWidth={3.5} />
+                            {/* Overlapping Badge - Positioned perfectly over the border */}
+                            <div className="absolute -bottom-4 left-6 w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-xl border-[6px] border-white z-10 transition-transform duration-300 lg:group-hover:-translate-y-1">
+                                <div className="w-full h-full bg-[#E4EB9C]/40 rounded-xl flex items-center justify-center text-[#2D5128] transition-colors lg:group-hover:bg-[#2D5128] lg:group-hover:text-[#E4EB9C]">
+                                    <item.icon size={22} strokeWidth={2.5} />
                                 </div>
                             </div>
                         </div>
 
                         {/* Text Content */}
                         <div className="px-2 pb-2">
-                            <h3 className="text-lg font-black text-[#142C14] leading-tight mb-3">
+                            <h3 className="text-lg font-black text-[#142C14] leading-tight mb-3 transition-colors lg:group-hover:text-[#2D5128]">
                                 {item.title}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium">

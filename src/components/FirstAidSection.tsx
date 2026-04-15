@@ -106,12 +106,6 @@ const FirstAidSection = () => (
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </NavLink>
 
-                <div className="flex items-center gap-3 px-5 py-2 rounded-xl bg-[#142C14]/60 backdrop-blur-md border border-[#8DA750]/20 shadow-xl">
-                    <div className="w-2 h-2 rounded-full animate-pulse" />
-                    <p className="text-[10px] font-black text-[#E4EB9C] uppercase tracking-[0.2em]">
-                        Local ABTC Units • Open 24/7
-                    </p>
-                </div>
             </div>
         </div>
     </section>
