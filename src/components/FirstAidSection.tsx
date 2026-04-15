@@ -1,5 +1,6 @@
 import { Droplets, ShieldPlus, Hospital, Syringe, ArrowRight, MapPin } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useLanguage } from "../lib/LanguageContext";
 
 import fa1 from "@/assets/wash-dog-bite-wound.png";
 import fa2 from "@/assets/antiseptic-img.png";
@@ -38,7 +39,9 @@ const steps = [
     },
 ];
 
-const FirstAidSection = () => (
+const FirstAidSection = () => {
+    const { t } = useLanguage();
+    return (
     <section
         id="first-aid"
         className="relative py-20 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
@@ -53,10 +56,10 @@ const FirstAidSection = () => (
 
             <div className="text-center mb-16">
                 <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
-                    First Aid After a Bite
+                    {t("First Aid After a Bite")}
                 </h2>
                 <p className="text-[#E4EB9C]/80 max-w-xl mx-auto mt-6 text-lg leading-relaxed font-medium">
-                    The first 15 minutes decide the outcome. Follow these medical protocols
+                    {t("The first 15 minutes decide the outcome. Follow these medical protocols")}
                 </p>
             </div>
 
@@ -86,10 +89,10 @@ const FirstAidSection = () => (
 
                         <div className="px-3 pb-2 flex-1 flex flex-col">
                             <h3 className="font-heading font-black text-[#142C14] text-xl mb-3 leading-tight group-hover:text-[#2D5128] transition-colors">
-                                {s.title}
+                                {t(s.title)}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium flex-1">
-                                {s.desc}
+                                {t(s.desc)}
                             </p>
                         </div>
                     </div>
@@ -102,13 +105,14 @@ const FirstAidSection = () => (
                     className="group relative inline-flex items-center justify-center rounded-2xl bg-[#2D5128] text-[#E4EB9C] font-black px-10 py-5 text-sm uppercase tracking-widest hover:bg-[142C14] transition-all shadow-xl shadow-[537B2F]-900/40 active:scale-[0.98]"
                 >
                     <MapPin className="mr-2 h-5 w-5" />
-                    Find Nearest Treatment Center
+                    {t("Find Nearest Treatment Center")}
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </NavLink>
 
             </div>
         </div>
     </section>
-);
+    );
+};
 
 export default FirstAidSection;

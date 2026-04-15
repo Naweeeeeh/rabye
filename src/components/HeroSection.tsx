@@ -1,6 +1,7 @@
 import heroImg from "@/assets/heroimg.png";
 import { ShieldCheck, Users, Dog, ArrowRight, ExternalLink } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useLanguage } from "../lib/LanguageContext";
 
 const stats = [
     {
@@ -23,7 +24,9 @@ const stats = [
     },
 ];
 
-const HeroSection = () => (
+const HeroSection = () => {
+    const { t, language } = useLanguage();
+    return (
     <section className="bg-white pb-16 md:pb-24 pt-8 overflow-hidden relative">
 
         <div className="container px-4">
@@ -34,20 +37,20 @@ const HeroSection = () => (
 
                 <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight">
                     <span 
-                        className="font-black tracking-tighter bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent"
-                        style={{ WebkitTextStroke: "1.5px transparent" }} // This forces the browser to thicken the stroke
+                        className={`font-black tracking-tighter bg-gradient-to-r from-[#142C14] to-[#537B2F] bg-clip-text text-transparent ${language === "CEB" ? "text-3xl md:text-4xl lg:text-5xl" : ""}`}
+                        style={{ WebkitTextStroke: "1.2px transparent" }} // This forces the browser to thicken the stroke
                     >
-                        Rabies is Fatal.
+                        {t("Rabies is Fatal.")}
                     </span> 
                     <br/>
                     <span className="font-extrabold text-slate-800 tracking-tight">
-                        Your Action Now is the Only Cure.
+                        {t("Your Action Now is the Only Cure.")}
                     </span>
                 </h1>
 
 
                     <p className="text-muted-foreground text-lg max-w-lg leading-relaxed">
-                        Symptoms don’t show up immediately, but by the time they do, it is <strong className="text-slate-900">100% too late</strong>. If you’ve been bitten or scratched, <span className="text-[#142C14] font-black uppercase tracking-wider">DO NOT WAIT</span>. Follow these emergency steps now.
+                        {t("Symptoms don’t show up immediately, but by the time they do, it is")} <strong className="text-slate-900">{t("100% too late")}</strong>. {t("If you’ve been bitten or scratched,")} <span className="text-[#142C14] font-black uppercase tracking-wider">{t("DO NOT WAIT")}</span>. {t("Follow these emergency steps now.")}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -60,7 +63,7 @@ const HeroSection = () => (
                                 <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-white bg-red-500 shadow-sm"></span>
                             </span>
 
-                            ACT NOW: Bite Protocol
+                            {t("ACT NOW: Bite Protocol")}
                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </NavLink>
 
@@ -68,7 +71,7 @@ const HeroSection = () => (
                             to="/get-help"
                             className="w-full sm:w-[280px] h-14 inline-flex items-center justify-center rounded-xl border-2 border-[#2D5128] text-[#2D5128] font-bold transition-all hover:bg-[#E4EB9C]/30 hover:border-[#142C14] hover:text-[#142C14] active:scale-[0.98]"
                         >
-                            Find Vaccination Centers
+                            {t("Find Vaccination Centers")}
                         </NavLink>
                     </div>
                 </div>
@@ -83,7 +86,7 @@ const HeroSection = () => (
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     <div className="absolute bottom-6 left-6 text-white text-sm font-medium bg-[#142C14]/40 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
-                        Local Health Unit Vaccination Drive
+                        {t("Local Health Unit Vaccination Drive")}
                     </div>
                 </div>
 
@@ -111,7 +114,7 @@ const HeroSection = () => (
                                     {s.value}
                                 </p>
                                 <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest pr-6 leading-snug">
-                                    {s.label}
+                                    {t(s.label)}
                                 </p>
                             </div>
 
@@ -125,6 +128,7 @@ const HeroSection = () => (
             </div>
         </div>
     </section>
-);
+    );
+};
 
 export default HeroSection;

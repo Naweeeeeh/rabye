@@ -1,4 +1,5 @@
 import { AlertTriangle, EyeOff, HeartCrack, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "../lib/LanguageContext";
 
 import problem1 from "/public/problem1.jpg";
 import problem2 from "/public/problem2.jpg";
@@ -29,27 +30,32 @@ const cards = [
     },
 ];
 
-const ProblemSection = () => (
+const ProblemSection = () => {
+    const { t } = useLanguage();
+    return (
         <section 
             id="problem" 
             className="relative py-16 px-10 border-y border-[#8DA750]/30 overflow-hidden flex-1 flex flex-col justify-center bg-cover bg-center bg-no-repeat"
-            // Use the absolute path string directly
-            style={{ backgroundImage: `url(${texture})`}} 
+            style={{ backgroundImage: `url(${texture})` }}
         >
-        <div className="absolute inset-0 opacity-5 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none"></div>
+        {/* Gradient Overlay applied on top of the background image */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#142C148/85 via-[#142C14]/75 to-transparent pointer-events-none z-0"></div>
+        
+        {/* Secondary texture overlay */}
+        <div className="absolute inset-0 opacity-20 bg-[url('/texture.jpg')] bg-repeat bg-[length:250px] mix-blend-overlay pointer-events-none z-0"></div>
 
         <div className="container max-w-7xl mx-auto px-4 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
 
             {/* Section Header */}
             <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E4EB9C]/10 text-[#E4EB9C] text-[10px] font-black uppercase tracking-[0.2em] mb-4 border border-[#E4EB9C]/20">
-                    Current Crisis
+                    {t("Current Crisis")}
                 </div>
                 <h2 className="font-heading text-3xl md:text-5xl font-black text-white flex items-center justify-center gap-3 tracking-tight">
-                    The Problem
+                    {t("The Problem")}
                 </h2>
                 <p className="text-[#E4EB9C]/80 max-w-2xl mx-auto mt-6 text-lg leading-relaxed font-medium">
-                    Rabies remains one of the most neglected tropical diseases, disproportionately affecting vulnerable communities in the Philippines.
+                    {t("Rabies remains one of the most neglected tropical diseases, disproportionately affecting vulnerable communities in the Philippines.")}
                 </p>
             </div>
 
@@ -59,7 +65,9 @@ const ProblemSection = () => (
                     <a
                         key={c.title}
                         href={c.href}
-                        className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50 cursor-pointer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[#142C14]/50 cursor-pointer text-left"
                     >
                         {/* New: Hyperlink Icon in Top Right */}
                         <div className="absolute top-6 right-6 z-20 w-8 h-8 rounded-full bg-[#E4EB9C]/20 flex items-center justify-center text-[#2D5128] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:rotate-12">
@@ -67,11 +75,15 @@ const ProblemSection = () => (
                         </div>
 
                         {/* Image Container */}
-                        <div className="relative w-full h-56 mb-12 rounded-[1.8rem] overflow-hidden bg-slate-100">
+                        <div className="relative w-full h-56 mb-12 rounded-[1.8rem] overflow-hidden bg-slate-900">
+                            {/* Photo Overlay Background to increase visibility against the underlying image */}
+                            <div className="absolute inset-0 bg-slate-900/10 pointer-events-none z-10"></div>
                             <img
                                 src={c.image}
                                 alt={c.title}
-                                className="w-full h-full object-cover object-center grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                                className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
+                                    c.title === "A Persistent Local Threat" ? "object-top" : "object-center"
+                                } grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100`}
                             />
                             
                             {/* The Overlapping Icon Badge */}
@@ -85,10 +97,10 @@ const ProblemSection = () => (
                         {/* Text Content */}
                         <div className="px-3 pb-2 flex-1 flex flex-col">
                             <h3 className="font-heading font-black text-[#142C14] text-xl md:text-2xl mb-4 leading-tight group-hover:text-[#2D5128] transition-colors">
-                                {c.title}
+                                {t(c.title)}
                             </h3>
                             <p className="text-sm text-[#142C14]/70 leading-relaxed font-medium flex-1">
-                                {c.desc}
+                                {t(c.desc)}
                             </p>
                         </div>
                     </a>
@@ -98,12 +110,13 @@ const ProblemSection = () => (
             {/* Footer Note */}
             <div className="mt-20 pt-8 border-t border-[#8DA750]/20 text-center">
                 <p className="text-[10px] font-black text-[#E4EB9C]/50 uppercase tracking-[0.3em]">
-                    Global Health Burden • Southeast Asia Region
+                    {t("Global Health Burden • Southeast Asia Region")}
                 </p>
             </div>
 
         </div>
     </section>
-);
+    );
+};
 
 export default ProblemSection;

@@ -2,12 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, MapPin, Droplets, Info } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "../lib/LanguageContext";
 
 const AIChatBot = () => {
+    const { t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([
-        { role: "assistant", content: "Hello! I am the Ra-Byes! AI. I can help you understand rabies, explain emergency first aid, or locate the nearest Animal Bite Treatment Center." }
+        { role: "assistant", content: t("Hello! I am the Ra-Byes! AI. I can help you understand rabies, explain emergency first aid, or locate the nearest Animal Bite Treatment Center.") }
     ]);
 
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -56,7 +58,7 @@ const AIChatBot = () => {
 
         setTimeout(() => {
             const aiReply = processAIResponse(textToSend);
-            setMessages(prev => [...prev, { role: "assistant", content: aiReply }]);
+            setMessages(prev => [...prev, { role: "assistant", content: t(aiReply) }]);
         }, 600);
     };
 
@@ -71,8 +73,8 @@ const AIChatBot = () => {
                                 <Bot size={22} className="text-green-400" />
                             </div>
                             <div>
-                                <p className="font-heading font-black text-base leading-none tracking-wide">Ra-Byes! Assistant</p>
-                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Health Navigator</p>
+                                <p className="font-heading font-black text-base leading-none tracking-wide">{t("Ra-Byes! Assistant")}</p>
+                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{t("Health Navigator")}</p>
                             </div>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="hover:bg-slate-800 rounded-full p-2 transition-colors text-slate-400 hover:text-white">
@@ -99,13 +101,13 @@ const AIChatBot = () => {
                     {/* Quick Actions (Chips) */}
                     <div className="px-4 py-3 border-t border-slate-100 flex gap-2 overflow-x-auto no-scrollbar bg-white">
                         <button onClick={() => handleSend("Where is the nearest ABC?")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
-                            <MapPin size={14} /> Find Clinic
+                            <MapPin size={14} /> {t("Find Clinic")}
                         </button>
                         <button onClick={() => handleSend("What is the first aid for a bite?")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
-                            <Droplets size={14} /> First Aid
+                            <Droplets size={14} /> {t("First Aid")}
                         </button>
                         <button onClick={() => handleSend("Tell me about rabies")} className="whitespace-nowrap bg-white hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 hover:border-green-300 transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
-                            <Info size={14} /> Rabies Info
+                            <Info size={14} /> {t("Rabies Info")}
                         </button>
                     </div>
 
@@ -115,7 +117,7 @@ const AIChatBot = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                            placeholder="Ask about first aid..."
+                            placeholder={t("Ask about first aid...")}
                             className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all shadow-sm"
                         />
                         <button onClick={() => handleSend()} className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 shadow-md active:scale-95 transition-all">
