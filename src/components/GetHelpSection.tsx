@@ -79,9 +79,15 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
             zoom: 11,
         });
 
+        setTimeout(() => {
+            map.current?.resize();
+        }, 200);
+
         map.current.addControl(new maplibregl.NavigationControl(), "top-right");
 
         map.current.on('load', () => {
+            map.current?.resize();
+
             map.current?.addSource('route', {
                 type: 'geojson',
                 data: { type: 'FeatureCollection', features: [] }
@@ -272,19 +278,15 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                     </p>
                 </div>
 
-                {/* Removed fixed height from grid, using items-start to allow columns to dictate height */}
                 <div className="grid lg:grid-cols-3 gap-8 w-full items-start">
 
-                    {/* Explicit Map Height */}
                     <div className="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-[#E4EB9C] h-[500px] lg:h-[650px]">
                         <style>{`.maplibregl-popup-content { border-radius: 1rem !important; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important; padding: 16px !important; border: 1px solid #f1f5f9 !important; }`}</style>
                         <div ref={mapContainer} className="w-full h-full" />
                     </div>
 
-                    {/* Explicit Right Column Height matching the map */}
                     <div className="flex flex-col gap-6 lg:col-span-1 h-auto lg:h-[650px]">
 
-                        {/* Top Card: Locate Yourself (Shrinks to fit content) */}
                         <div className="bg-white rounded-3xl p-6 shadow-xl shadow-[#8DA750]/10 border border-slate-100 transition-all hover:border-[#8DA750]/50 shrink-0">
                             <div className="flex items-center gap-3 mb-5">
                                 <div className="p-2.5 rounded-xl bg-[#E4EB9C]/20 border border-[#8DA750]/20">
@@ -318,9 +320,7 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                             )}
                         </div>
 
-                        {/* Bottom Card: Scrollable ABTC List (Takes up exact remaining space) */}
                         <div className="bg-white rounded-3xl shadow-xl shadow-[#8DA750]/10 border border-slate-100 flex flex-col flex-1 min-h-[350px] lg:min-h-0 overflow-hidden">
-                            {/* Fixed Header */}
                             <div className="p-6 border-b border-slate-100 bg-[#E4EB9C]/10 shrink-0">
                                 <h3 className="font-heading font-black text-lg text-slate-900 flex items-center gap-2">
                                     <Hospital className="text-[#2D5128]" size={20} />
@@ -329,7 +329,6 @@ const GetHelpSection = ({ onLocationFound }: GetHelpProps) => {
                                 <p className="text-xs text-slate-500 mt-1 font-medium">Select a facility to view on map</p>
                             </div>
 
-                            {/* Scrollable Content locked inside the parent container */}
                             <div className="flex-1 overflow-y-auto no-scrollbar p-2 pb-6">
                                 {biteCenters.map((center) => (
                                     <button

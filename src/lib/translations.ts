@@ -87,7 +87,7 @@ export const translations: Record<string, string> = {
     "Facility Locator": "Pangita og Pasilidad",
     "Find Treatment": "Pangita og Tambalanan",
     "Find an accredited Animal Bite Treatment Center (ABTC) near you. Use your location for quick routing.": 
-    "Pangita og ABTC nga duol nimo. Gamita imong lokasyon aron dali ra makapangita ug pinakaduol nimo.",
+    "Para makatabang mig pangita ug ABTC. Palihug i on imong lokasyon aron dali ra makapangita ug pinakaduol nga tambalanan.",
     "Locate Yourself": "I-set imong Lokasyon",
     "Use My Location": "Gamita Akong Lokasyon",
 
